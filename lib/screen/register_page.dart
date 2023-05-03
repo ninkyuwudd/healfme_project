@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ? "email Can't be empty!"
                                 : EmailValidator.validate(email.text)
                                     ? null
-                                    : "email tidak valid"),
+                                    : "email tidak valid!"),
                       ),
                       SizedBox(
                         height: 20,
