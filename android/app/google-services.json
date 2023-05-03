@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "251042767140",
+    "project_id": "healthantri",
+    "storage_bucket": "healthantri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251042767140:android:224f4120b8d7fe3132d3b1",
+        "android_client_info": {
+          "package_name": "com.example.healthproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251042767140-pp3km2vdgeuermr37amfgj4vlg6pjmu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACJBrnyjWQxpHpBDDYB5kU1HMkRfDVu2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251042767140-pp3km2vdgeuermr37amfgj4vlg6pjmu1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "251042767140-hmcrd8m6520fqabp0f470oovrlno7f1k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.healthproject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
