@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:healthproject/colors.dart';
 import 'package:healthproject/provider/user_repo.dart';
+import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/register_page.dart';
+import 'package:healthproject/screen/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -27,10 +29,16 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Health',
         theme: ThemeData(
+          textTheme: TextTheme(
+            
+            bodyMedium: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color.fromARGB(255, 57, 57, 57))
+          ),
           primarySwatch: primary,
         ),
-        home: LoginPage(),
+        home: SplashScreen(),
         routes: {
+          Homepage.routename : (context) => Homepage(),
+          LoginPage.routename : (context) => LoginPage(),
           RegisterPage.routename: (context) => RegisterPage(),
         },
       ),
