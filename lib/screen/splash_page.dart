@@ -10,10 +10,14 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Text("Welcome To HealfMe"),
+            // Image(image: AssetImage("images/logo.png")),
             // Image(image: AssetImage(assetName)),
-            ElevatedButton(onPressed: (){}, child: Text("Lest get started"))
+            Text("Welcome To HealfMe"),
+            
+            ElevatedButton(onPressed: (){
 
+            }, child: Text("Lest get started"))
+          
           ],
         ),
       ),
