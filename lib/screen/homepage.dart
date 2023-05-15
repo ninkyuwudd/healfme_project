@@ -33,7 +33,7 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 40,
                 ),
-                ProfileCardHome(name: "Reihan Wudd"),
+                ProfileCardHome(name: "Firdhan"),
                 SizedBox(
                   height: 20,
                 ),
@@ -95,7 +95,6 @@ class _HomepageState extends State<Homepage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                          
                             image: AssetImage("images/bg_card_home.png"),
                             fit: BoxFit.cover)),
                     child: Row(
@@ -121,13 +120,17 @@ class _HomepageState extends State<Homepage> {
                               Text(
                                 "Terdekat mu disini",
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.normal),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal),
                               ),
                             ],
                           ),
                         ),
                         Spacer(),
-                        Image(image: AssetImage("images/apotek.png"),width: 80,)
+                        Image(
+                          image: AssetImage("images/apotek.png"),
+                          width: 80,
+                        )
                       ],
                     ),
                   ),
