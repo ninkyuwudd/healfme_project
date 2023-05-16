@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthproject/colors.dart';
+import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
+import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/register_page.dart';
@@ -24,21 +27,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => Getfoto())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Health',
         theme: ThemeData(
-          textTheme: TextTheme(
-            
-            bodyMedium: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color.fromARGB(255, 57, 57, 57))
-          ),
-          primarySwatch: primary,
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+          primarySwatch: mcgpalette0,
         ),
-        home: SplashScreen(),
+        home: UnggahKtpBpjs(),
         routes: {
-          Homepage.routename : (context) => Homepage(),
-          LoginPage.routename : (context) => LoginPage(),
+          Homepage.routename: (context) => Homepage(),
+          LoginPage.routename: (context) => LoginPage(),
           RegisterPage.routename: (context) => RegisterPage(),
         },
       ),

@@ -33,7 +33,7 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 40,
                 ),
-                ProfileCardHome(name: "Firdhan"),
+                ProfileCardHome(name: "Reihan Wudd hibatullah"),
                 SizedBox(
                   height: 20,
                 ),
