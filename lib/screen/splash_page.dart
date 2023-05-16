@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
             
             ElevatedButton(onPressed: (){
 
-            }, child: Text("Lest get started"))
+            }, child: Text("Lest Get Started"))
           
           ],
         ),
