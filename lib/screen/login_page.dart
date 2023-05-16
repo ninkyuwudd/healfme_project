@@ -179,10 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                                   print(usersitem[i].username);
                                   if (username.text == usersitem[i].username &&
                                       password.text == usersitem[i].password) {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => BottomNavbar(idx: i,)));
+                                  Navigator.pushReplacementNamed(context, "/homepage");
                                     notallowedalert = false;
                                     break;
                                   } else {
