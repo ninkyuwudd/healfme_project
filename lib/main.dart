@@ -4,10 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthproject/colors.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
-<<<<<<< HEAD
 import 'package:healthproject/screen/daftar_poli.dart';
-=======
->>>>>>> 251d9a58da0474b032467ed04cfa0a9ffb149055
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/register_page.dart';
@@ -38,7 +35,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Health',
         theme: ThemeData(
-<<<<<<< HEAD
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           primarySwatch: mcgpalette0,
         ),
@@ -46,18 +42,6 @@ class MyApp extends StatelessWidget {
         routes: {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),
-=======
-          textTheme: TextTheme(
-            
-            bodyMedium: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color.fromARGB(255, 57, 57, 57))
-          ),
-          primarySwatch: primary,
-        ),
-        home: SplashScreen(),
-        routes: {
-          Homepage.routename : (context) => Homepage(),
-          LoginPage.routename : (context) => LoginPage(),
->>>>>>> 251d9a58da0474b032467ed04cfa0a9ffb149055
           RegisterPage.routename: (context) => RegisterPage(),
         },
       ),
