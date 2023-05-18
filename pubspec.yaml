@@ -44,6 +44,9 @@ dependencies:
   google_fonts: ^4.0.4
   image_picker: ^0.8.7+5
   geolocator: ^9.0.2
+  http: ^0.13.6
+  algolia: ^1.1.2
+  google_maps_flutter: ^2.2.6
   
 
 dev_dependencies:
@@ -74,6 +77,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
+    - asset/apoteklatlong.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
