@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/apotik_provider.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:provider/provider.dart';
 
 class ApotekList extends StatefulWidget {
@@ -37,10 +38,15 @@ class _ApotekListState extends State<ApotekList> {
                   itemCount: showdata.length,
                   itemBuilder: (context, index) {
                     final idxapotik = showdata[index];
-                    return ListTile(
-                        leading: Text(idxapotik["id"]),
-                        title: Text(idxapotik["nama"]),
-                      
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, ApotikTerdekatPage.routename,arguments: idxapotik);
+                      },
+                      child: ListTile(
+                          leading: Text(idxapotik["id"]),
+                          title: Text(idxapotik["nama"]),
+                          
+                      ),
                     );
                   });
               }
