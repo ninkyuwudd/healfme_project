@@ -35,7 +35,6 @@ class _HomepageState extends State<Homepage> {
                   height: 40,
                 ),
                 ProfileCardHome(name: "Reihan Wudd hibatullah"),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -125,13 +124,17 @@ class _HomepageState extends State<Homepage> {
                               Text(
                                 "Terdekat mu disini",
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.normal),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal),
                               ),
                             ],
                           ),
                         ),
                         Spacer(),
-                        Image(image: AssetImage("images/apotek.png"),width: 80,)
+                        Image(
+                          image: AssetImage("images/apotek.png"),
+                          width: 80,
+                        )
                       ],
                     ),
                   ),
