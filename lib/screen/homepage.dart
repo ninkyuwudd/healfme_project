@@ -3,6 +3,8 @@ import 'package:healthproject/screen/apotik_list_page.dart';
 import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
+import 'package:healthproject/screen/jadwal.dart';
+import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 
@@ -72,7 +74,9 @@ class _HomepageState extends State<Homepage> {
                       IconGrid(
                         img: "pgigi",
                         poli: "Poli Gigi",
-                        fungsi: () {},
+                        fungsi: () {
+                          Navigator.pushNamed(context, JadwalPoli.routename);
+                        },
                       ),
                       IconGrid(
                         img: "plansia",
