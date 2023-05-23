@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/screen/pendaftaran.dart';
 
-void main() async {
-  runApp(const JadwalPoli());
-}
+// void main() async {
+//   runApp(const JadwalPoli());
+// }
 
 class JadwalPoli extends StatefulWidget {
+  static const routename = "/JadwaPoli";
   const JadwalPoli({super.key});
 
   @override
@@ -20,13 +22,16 @@ class _JadwalPoliState extends State<JadwalPoli> {
         home: Scaffold(
           appBar: AppBar(
             leading: BackButton(
+              onPressed: () {
+              Navigator.pop(context);
+            },
               color: Colors.black,
             ),
             // IconButton(),
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: Image.asset(
-              'assets/images/logodaftar.png',
+              'images/logodaftar.png',
               height: 100,
               width: 100,
             ),
@@ -224,12 +229,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                       ),
                     ),
                     onPressed: () {
-                      if (_formStateJ.currentState!.validate()) {
-                        print('Anjai bisa');
-                        // Kalo uda divalidasi taro disini
-                      } else {
-                        print("gila lo");
-                      }
+                      Navigator.pushNamed(context, FormPendaftaran.routename);
                     },
                     child: const Text(
                       "Selanjutnya",
