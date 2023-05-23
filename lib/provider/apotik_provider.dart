@@ -18,5 +18,4 @@ class ApotekProvider extends ChangeNotifier {
     notifyListeners();
     print("total is: ${_apoteklist.length}");
   } 
-
 }
