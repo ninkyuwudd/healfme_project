@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/screen/apotik_page.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 

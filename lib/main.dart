@@ -7,7 +7,7 @@ import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/maps_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/apotik_list_page.dart';
-import 'package:healthproject/screen/apotik_page.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/login_page.dart';

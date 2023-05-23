@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ApotikTerdekatPage extends StatefulWidget {
-  static const routename = "/apotik";
+  static const routename = "/apotikmaps";
   const ApotikTerdekatPage({super.key});
 
   @override
@@ -25,44 +25,42 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
     position: LatLng(-7.983908, 112.621391),
   );
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-8.184486, 113.668076),
-    zoom: 14.4746,
-  );
-
-  List<Marker> _marker = [];
-  final List<Marker> _list = [
-    Marker(markerId: MarkerId("M1"),
-    position: LatLng(-8.184486, 113.668076),
-    infoWindow: InfoWindow(
-      title: "Current Position"
-    )
-    )
-  ]; 
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _marker.addAll(_list);
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
+    // Set<Marker> _marker = {};
+    final arg = ModalRoute.of(context)?.settings.arguments as dynamic;
+    final lat = arg['lat'];
+    final long = arg['long'];
+    final name = arg['nama'];
+    print(lat.toString());
+    print(long.toString());
+
+    Set<Marker> makers = {};
+
+    Marker marker = Marker(markerId: MarkerId('01'),
+    position: LatLng(long,lat),
+    infoWindow: InfoWindow(title: name)
+    );
+
+    CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(long, lat),
+    zoom: 14.4746,
+  );
+
+    makers.add(marker);
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Apotek Terdekat"),
-        ),
-        body:GoogleMap(
-              mapType: MapType.normal,
-              markers: Set<Marker>.of(_marker),
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              }
-              ),
-        );
+      appBar: AppBar(
+        title: Text("Apotek Terdekat"),
+      ),
+      body: GoogleMap(
+          mapType: MapType.normal,
+          markers: makers,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          }),
+    );
   }
 }
