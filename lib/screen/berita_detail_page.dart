@@ -45,8 +45,8 @@ class _DetailBeritaPageState extends State<DetailBeritaPage> {
               Text(getberita.title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               SizedBox(height: 20,),
               Divider(),
-              Text(getberita.deskripsi,style: TextStyle(fontSize: 17),),
-              SizedBox(height: 10,),
+              Text(getberita.deskripsi,style: TextStyle(fontSize: 16),),
+              SizedBox(height: 15,),
               Divider(),
               Text(getberita.konten)
             ],
