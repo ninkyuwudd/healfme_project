@@ -40,7 +40,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   alignment: Alignment.topCenter,
                   margin: EdgeInsets.only(top: 20),
                   child: Text(
-                    "Pilih Jadwal Poli Umum",
+                    "Pilih Jadwal Poli Umum uhuy",
                     style: TextStyle(
                         color: Color.fromARGB(255, 65, 65, 65),
                         fontSize: 24,
