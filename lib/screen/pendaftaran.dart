@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 // ignore: unused_import
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-void main() async {
-  runApp(const FormPendaftaran());
-}
+// void main() async {
+//   runApp(const FormPendaftaran());
+// }
 
 class FormPendaftaran extends StatefulWidget {
+  static const routename = "/FormPendaftaran";
   const FormPendaftaran({super.key});
 
   @override
@@ -32,13 +33,16 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
       home: Scaffold(
         appBar: AppBar(
           leading: BackButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
             color: Colors.black,
           ),
           // IconButton(),
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Image.asset(
-            'assets/images/logodaftar.png',
+            'images/logodaftar.png',
             height: 100,
             width: 100,
           ),
