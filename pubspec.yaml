@@ -47,6 +47,8 @@ dependencies:
   http: ^0.13.6
   algolia: ^1.1.2
   google_maps_flutter: ^2.2.6
+  intl: ^0.18.1
+  url_launcher: ^6.1.11
   
 
 dev_dependencies:
