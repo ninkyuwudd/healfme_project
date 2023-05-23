@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthproject/colors.dart';
 import 'package:healthproject/provider/apotik_provider.dart';
+import 'package:healthproject/provider/berita_provider.dart';
+import 'package:healthproject/provider/geolocator_provider.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/maps_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/apotik_list_page.dart';
-import 'package:healthproject/screen/apotik_page.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
+import 'package:healthproject/screen/berita_detail_page.dart';
+import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/login_page.dart';
@@ -36,7 +40,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => Getfoto()),
         ChangeNotifierProvider(create: (_) => MapsApiProvider()),
-        ChangeNotifierProvider(create: (_) => ApotekProvider())
+        ChangeNotifierProvider(create: (_) => ApotekProvider()),
+        ChangeNotifierProvider(create: (_) => CurrentLocProvider()),
+        ChangeNotifierProvider(create: (_) => BeritaProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,12 +51,16 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           primarySwatch: mcgpalette0,
         ),
-        home: ApotekList(),
+        home: Homepage(),
         routes: {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),
           RegisterPage.routename: (context) => RegisterPage(),
-          ApotikTerdekatPage.routename : (context) => ApotikTerdekatPage()
+          ApotikTerdekatPage.routename : (context) => ApotikTerdekatPage(),
+          ApotekList.routename :(context) => ApotekList(),
+          UnggahKtpBpjs.routename :(context) => UnggahKtpBpjs(),
+          BeritaPage.routename :(context) => BeritaPage(),
+          DetailBeritaPage.routename :(context) => DetailBeritaPage()
         },
       ),
     );

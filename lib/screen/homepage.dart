@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/screen/apotik_page.dart';
+import 'package:healthproject/screen/apotik_list_page.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
+import 'package:healthproject/screen/berita_page.dart';
+import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 
@@ -62,21 +65,24 @@ class _HomepageState extends State<Homepage> {
                       IconGrid(
                         img: "pumum",
                         poli: "Poli Umum",
+                        fungsi: (){
+                          Navigator.pushNamed(context, UnggahKtpBpjs.routename);
+                        },
                       ),
-                      IconGrid(img: "pgigi", poli: "Poli Gigi"),
-                      IconGrid(img: "plansia", poli: "Poli Lansia"),
+                      IconGrid(img: "pgigi", poli: "Poli Gigi", fungsi: (){},),
+                      IconGrid(img: "plansia", poli: "Poli Lansia", fungsi: (){},),
                       IconGrid(
                         img: "pgizi",
                         poli: "Poli Gizi",
-                      ),
+                      fungsi: (){},),
                       IconGrid(
                         img: "pkia",
                         poli: "Poli Kia",
-                      ),
+                      fungsi: (){},),
                       IconGrid(
                         img: "sanitasi",
                         poli: "Sanitasi",
-                      ),
+                      fungsi: (){},),
                     ],
                   ),
                 ),
@@ -92,7 +98,7 @@ class _HomepageState extends State<Homepage> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, ApotikTerdekatPage.routename);
+                    Navigator.pushNamed(context, ApotekList.routename);
                   },
                   child: Container(
                     height: 110,
@@ -141,7 +147,44 @@ class _HomepageState extends State<Homepage> {
                 ),
                 SizedBox(
                   height: 15,
-                )
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, BeritaPage.routename);
+                  },
+                  child: Container(
+                    height: 110,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                            image: AssetImage("images/bg_card_home.png"),
+                            fit: BoxFit.cover)),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 15, top: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Berita Terkini",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+                        Image(
+                          image: AssetImage("images/apotek.png"),
+                          width: 80,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

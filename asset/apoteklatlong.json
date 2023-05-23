@@ -4,180 +4,210 @@
     "id": "Ap1",
     "lat": 113.7008044,
     "long": -8.174853299999999,
+    "detail" : "JL. Jend Gatot Subroto 25, Kepatihan,Kaliwates, Jember, 68137, Sawahan Cantian, Kepatihan, Kaliwates, Jember Regency, East Java 68131",
     "nama": "Jember Apotik"
   },
   {
     "id": "Ap2",
     "lat": 113.6947189,
     "long": -8.1720508,
+    "detail" : "Jl. Gajah Mada No.19, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131+62 331 488933",
     "nama": "Apotek Bima"
   },
   {
     "id": "Ap3",
     "lat": 113.689612,
     "long": -8.1736526,
+    "detail" : "Jl. Gajah Mada No.171, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68133",
     "nama": "Apotik Kimia Farma Gajah Mada Jember No 62"
   },
   {
     "id": "Ap4",
     "lat": 113.7054279,
     "long": -8.1681024,
+    "detail" : "RPJ4+P6R, Kp. Using, Jemberlor, Kec. Patrang, Kabupaten Jember, Jawa Timur 68118",
     "nama": "APOTIK JEMBER KLINIK"
   },
   {
     "id": "Ap5",
     "lat": 113.7037353,
     "long": -8.1804281,
+    "detail" : "RP93+RFP, Jl. Letjen Suprapto V, Lingkungan Sumberdand, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122",
     "nama": "Apotek Dewi Farma"
   },
   {
     "id": "Ap6",
     "lat": 113.6995951,
     "long": -8.175483,
+    "detail" : "Jl. Trunojoyo Jl. Kauman No.81, Kauman, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131",
     "nama": "Apotek Buana Farma"
   },
   {
     "id": "Ap7",
     "lat": 113.6936543,
     "long": -8.177595499999999,
+    "detail" : "JL. KH. SHIDDIQ RUKO TALANGSARI SQUARE A1 NO 19, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur",
     "nama": "Apotek K-24 Talangsari"
   },
   {
     "id": "Ap8",
     "lat": 113.71499,
     "long": -8.1504922,
+    "detail" : "JL Dr. Soebandi, No. 232, Krajan, Patrang, Kec. Patrang, Kabupaten Jember, Jawa Timur 68111",
     "nama": "Apotek Prima Farma"
   },
   {
     "id": "Ap9",
     "lat": 113.714156,
     "long": -8.1602943,
+    "detail" : "Jl. Kalimantan No.11A, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotek K24 Kalimantan"
   },
   {
     "id": "Ap10",
     "lat": 113.7244556,
     "long": -8.1636857,
+    "detail" : "Jalan Mastrip No.69B Krajan Timur, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "Apotek Zora Farma"
   },
   {
     "id": "Ap11",
     "lat": 113.7008044,
     "long": -8.174853299999999,
+    "detail" : "JL. Jend Gatot Subroto 25, Kepatihan,Kaliwates, Jember, 68137, Sawahan Cantian, Kepatihan, Kaliwates, Jember Regency, East Java 68131",
     "nama": "Jember Apotik"
   },
   {
     "id": "Ap12",
     "lat": 113.6947189,
     "long": -8.1720508,
+    "detail" : "Jl. Gajah Mada No.19, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131",
     "nama": "Apotek Bima"
   },
   {
     "id": "Ap13",
     "lat": 113.689612,
     "long": -8.1736526,
+    "detail" : "Jl. Gajah Mada No.171, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68133",
     "nama": "Apotik Kimia Farma Gajah Mada Jember No 62"
   },
   {
     "id": "Ap14",
     "lat": 113.7054279,
     "long": -8.1681024,
+    "detail" : "RPJ4+P6R, Kp. Using, Jemberlor, Kec. Patrang, Kabupaten Jember, Jawa Timur 68118",
     "nama": "APOTIK JEMBER KLINIK"
   },
   {
     "id": "Ap15",
     "lat": 113.714156,
     "long": -8.1602943,
+    "detail" : "Jl. Kalimantan No.11A, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotek K24 Kalimantan"
   },
   {
     "id": "Ap16",
     "lat": 113.6847148,
     "long": -8.175678999999999,
+    "detail" : "Jl. Gajah Mada No.120, Kaliwates, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131",
     "nama": "Apotik Bima 5"
   },
   {
     "id": "Ap17",
     "lat": 113.6977778,
     "long": -8.173140400000001,
+    "detail" : "RMGX+P4R, Jl. Diponegoro A.-5, Tembaan, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131",
     "nama": "Apotik Johar"
   },
   {
     "id": "Ap18",
     "lat": 113.6995951,
     "long": -8.175483,
+    "detail" : "Jl. Trunojoyo Jl. Kauman No.81, Kauman, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131",
     "nama": "Apotek Buana Farma"
   },
   {
     "id": "Ap19",
     "lat": 113.7244556,
     "long": -8.1636857,
+    "detail" : "Jalan Mastrip No.69B Krajan Timur, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "Apotek Zora Farma"
   },
   {
     "id": "Ap20",
     "lat": 113.6936543,
     "long": -8.177595499999999,
+    "detail" : "JL. KH. SHIDDIQ RUKO TALANGSARI SQUARE A1 NO 19, Kelurahan Jember Kidu, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur",
     "nama": "Apotek K-24 Talangsari"
   },
   {
     "id": "Ap21",
     "lat": 113.7219937,
     "long": -8.1694594,
+    "detail" : "RPJC+6Q9, Krajan Barat, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "APOTEK WYN FARMA"
   },
   {
     "id": "Ap22",
     "lat": 113.7204769,
     "long": -8.1705546,
+    "detail" : "Jl. Jawa No.80, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotik Grand 21"
   },
   {
     "id": "Ap23",
     "lat": 113.7212124,
     "long": -8.171738699999999,
+    "detail" : "Jl. Karimata No.88 AB, Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotek ASA MEDIKA"
   },
   {
     "id": "Ap24",
     "lat": 113.7299032,
     "long": -8.1718225,
+    "detail" : "Jl. Tidar, Kali Oktak, Karangrejo, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "Apotek Rizdan Farma"
   },
   {
     "id": "Ap25",
     "lat": 113.7182509,
     "long": -8.1595143,
+    "detail" : "Ruko Elphasindo Jl. Mastrip No.65, RT.3, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "APOTEK MASTRIP FARMA"
   },
   {
     "id": "Ap26",
     "lat": 113.7244556,
     "long": -8.1636857,
+    "detail" : "Jalan Mastrip No.69B Krajan Timur, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "Apotek Zora Farma"
   },
   {
     "id": "Ap27",
     "lat": 113.7192732,
     "long": -8.1737188,
+    "detail" : "Jl. Karimata No.75, Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotek Tentrem"
   },
   {
     "id": "Ap28",
     "lat": 113.7271345,
     "long": -8.170562499999999,
+    "detail" : "Jl. Tidar No.18, Kloncing, Karangrejo, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "APOTEK SAFIRA MEDIKA"
   },
   {
     "id": "Ap29",
     "lat": 113.7248205,
     "long": -8.1661089,
+    "detail" : "Jl. Mastrip No.77, Krajan Barat, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124",
     "nama": "apotek syamira"
   },
   {
     "id": "Ap30",
     "lat": 113.7190768,
     "long": -8.1703402,
+    "detail" : "Jl. Jawa No.39 B, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121",
     "nama": "Apotek Keluarga"
   }
 ]

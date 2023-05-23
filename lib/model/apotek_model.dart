@@ -10,12 +10,14 @@ class ApotekModel {
     double lat;
     double long;
     String name;
+    String detail;
 
     ApotekModel({
         required this.id,
         required this.lat,
         required this.long,
         required this.name,
+        required this.detail
     });
 
     factory ApotekModel.fromJson(Map<String, dynamic> json) => ApotekModel(
@@ -23,6 +25,7 @@ class ApotekModel {
         lat: json["lat"]?.toDouble(),
         long: json["long"]?.toDouble(),
         name: json["name"],
+        detail: json["detail"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -30,5 +33,6 @@ class ApotekModel {
         "lat": lat,
         "long": long,
         "name": name,
+        "detail" : detail
     };
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../widget/daftar/btn_takefoto.dart';
 
 class UnggahKtpBpjs extends StatefulWidget {
+  static const routename = '/unggahbpjs';
   const UnggahKtpBpjs({super.key});
 
   @override
