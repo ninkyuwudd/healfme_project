@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 
@@ -33,7 +34,7 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 40,
                 ),
-                ProfileCardHome(name: "Firdhan"),
+                ProfileCardHome(name: "Reihan Wudd hibatullah"),
                 SizedBox(
                   height: 20,
                 ),
@@ -90,6 +91,9 @@ class _HomepageState extends State<Homepage> {
                   height: 15,
                 ),
                 GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, ApotikTerdekatPage.routename);
+                  },
                   child: Container(
                     height: 110,
                     decoration: BoxDecoration(

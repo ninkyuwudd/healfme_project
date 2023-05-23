@@ -1,0 +1,184 @@
+{
+  "items": [
+  {
+    "id": "Ap1",
+    "lat": 113.7008044,
+    "long": -8.174853299999999,
+    "nama": "Jember Apotik"
+  },
+  {
+    "id": "Ap2",
+    "lat": 113.6947189,
+    "long": -8.1720508,
+    "nama": "Apotek Bima"
+  },
+  {
+    "id": "Ap3",
+    "lat": 113.689612,
+    "long": -8.1736526,
+    "nama": "Apotik Kimia Farma Gajah Mada Jember No 62"
+  },
+  {
+    "id": "Ap4",
+    "lat": 113.7054279,
+    "long": -8.1681024,
+    "nama": "APOTIK JEMBER KLINIK"
+  },
+  {
+    "id": "Ap5",
+    "lat": 113.7037353,
+    "long": -8.1804281,
+    "nama": "Apotek Dewi Farma"
+  },
+  {
+    "id": "Ap6",
+    "lat": 113.6995951,
+    "long": -8.175483,
+    "nama": "Apotek Buana Farma"
+  },
+  {
+    "id": "Ap7",
+    "lat": 113.6936543,
+    "long": -8.177595499999999,
+    "nama": "Apotek K-24 Talangsari"
+  },
+  {
+    "id": "Ap8",
+    "lat": 113.71499,
+    "long": -8.1504922,
+    "nama": "Apotek Prima Farma"
+  },
+  {
+    "id": "Ap9",
+    "lat": 113.714156,
+    "long": -8.1602943,
+    "nama": "Apotek K24 Kalimantan"
+  },
+  {
+    "id": "Ap10",
+    "lat": 113.7244556,
+    "long": -8.1636857,
+    "nama": "Apotek Zora Farma"
+  },
+  {
+    "id": "Ap11",
+    "lat": 113.7008044,
+    "long": -8.174853299999999,
+    "nama": "Jember Apotik"
+  },
+  {
+    "id": "Ap12",
+    "lat": 113.6947189,
+    "long": -8.1720508,
+    "nama": "Apotek Bima"
+  },
+  {
+    "id": "Ap13",
+    "lat": 113.689612,
+    "long": -8.1736526,
+    "nama": "Apotik Kimia Farma Gajah Mada Jember No 62"
+  },
+  {
+    "id": "Ap14",
+    "lat": 113.7054279,
+    "long": -8.1681024,
+    "nama": "APOTIK JEMBER KLINIK"
+  },
+  {
+    "id": "Ap15",
+    "lat": 113.714156,
+    "long": -8.1602943,
+    "nama": "Apotek K24 Kalimantan"
+  },
+  {
+    "id": "Ap16",
+    "lat": 113.6847148,
+    "long": -8.175678999999999,
+    "nama": "Apotik Bima 5"
+  },
+  {
+    "id": "Ap17",
+    "lat": 113.6977778,
+    "long": -8.173140400000001,
+    "nama": "Apotik Johar"
+  },
+  {
+    "id": "Ap18",
+    "lat": 113.6995951,
+    "long": -8.175483,
+    "nama": "Apotek Buana Farma"
+  },
+  {
+    "id": "Ap19",
+    "lat": 113.7244556,
+    "long": -8.1636857,
+    "nama": "Apotek Zora Farma"
+  },
+  {
+    "id": "Ap20",
+    "lat": 113.6936543,
+    "long": -8.177595499999999,
+    "nama": "Apotek K-24 Talangsari"
+  },
+  {
+    "id": "Ap21",
+    "lat": 113.7219937,
+    "long": -8.1694594,
+    "nama": "APOTEK WYN FARMA"
+  },
+  {
+    "id": "Ap22",
+    "lat": 113.7204769,
+    "long": -8.1705546,
+    "nama": "Apotik Grand 21"
+  },
+  {
+    "id": "Ap23",
+    "lat": 113.7212124,
+    "long": -8.171738699999999,
+    "nama": "Apotek ASA MEDIKA"
+  },
+  {
+    "id": "Ap24",
+    "lat": 113.7299032,
+    "long": -8.1718225,
+    "nama": "Apotek Rizdan Farma"
+  },
+  {
+    "id": "Ap25",
+    "lat": 113.7182509,
+    "long": -8.1595143,
+    "nama": "APOTEK MASTRIP FARMA"
+  },
+  {
+    "id": "Ap26",
+    "lat": 113.7244556,
+    "long": -8.1636857,
+    "nama": "Apotek Zora Farma"
+  },
+  {
+    "id": "Ap27",
+    "lat": 113.7192732,
+    "long": -8.1737188,
+    "nama": "Apotek Tentrem"
+  },
+  {
+    "id": "Ap28",
+    "lat": 113.7271345,
+    "long": -8.170562499999999,
+    "nama": "APOTEK SAFIRA MEDIKA"
+  },
+  {
+    "id": "Ap29",
+    "lat": 113.7248205,
+    "long": -8.1661089,
+    "nama": "apotek syamira"
+  },
+  {
+    "id": "Ap30",
+    "lat": 113.7190768,
+    "long": -8.1703402,
+    "nama": "Apotek Keluarga"
+  }
+]
+}
