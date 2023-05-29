@@ -20,17 +20,6 @@ class _BeritaPageState extends State<BeritaPage> {
     super.initState();
     Provider.of<BeritaProvider>(context, listen: false).fetchberita();
   }
-
-  void _launchURL(String url) async {
-    print(url);
-    await launchUrl(Uri.parse(url));
-  // if (await canLaunch(url)) {
-  //   await launch(url);
-  // } else {
-  //   throw 'Could not launch $url';
-  // }
-}
-
   @override
   Widget build(BuildContext context) {
     final loadberita = Provider.of<BeritaProvider>(context);
