@@ -13,6 +13,7 @@ import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita_detail_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
+import 'package:healthproject/screen/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage()
           FormPendaftaran.routename :(context) => FormPendaftaran(),
           JadwalPoli.routename :(context) => JadwalPoli()
+          Ringkasan.routename: (context) => Ringkasan()
         },
       ),
     );
