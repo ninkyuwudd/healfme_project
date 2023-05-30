@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:healthproject/widget/rounded_value_field.dart';
 
@@ -179,8 +180,9 @@ class _LoginPageState extends State<LoginPage> {
                                   print(usersitem[i].username);
                                   if (username.text == usersitem[i].username &&
                                       password.text == usersitem[i].password) {
-                                  Navigator.pushReplacementNamed(context, "/homepage");
+                                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
                                     notallowedalert = false;
+                                    
                                     break;
                                   } else {
                                     notallowedalert = true;
