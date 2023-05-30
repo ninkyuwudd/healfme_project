@@ -13,6 +13,7 @@ import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita_detail_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
+import 'package:healthproject/screen/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
@@ -58,13 +59,14 @@ class MyApp extends StatelessWidget {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),
           RegisterPage.routename: (context) => RegisterPage(),
-          ApotikTerdekatPage.routename : (context) => ApotikTerdekatPage(),
-          ApotekList.routename :(context) => ApotekList(),
-          UnggahKtpBpjs.routename :(context) => UnggahKtpBpjs(),
-          BeritaPage.routename :(context) => BeritaPage(),
-          DetailBeritaPage.routename :(context) => DetailBeritaPage(),
-          FormPendaftaran.routename :(context) => FormPendaftaran(),
-          JadwalPoli.routename :(context) => JadwalPoli()
+          ApotikTerdekatPage.routename: (context) => ApotikTerdekatPage(),
+          ApotekList.routename: (context) => ApotekList(),
+          UnggahKtpBpjs.routename: (context) => UnggahKtpBpjs(),
+          BeritaPage.routename: (context) => BeritaPage(),
+          DetailBeritaPage.routename: (context) => DetailBeritaPage(),
+          FormPendaftaran.routename: (context) => FormPendaftaran(),
+          JadwalPoli.routename: (context) => JadwalPoli(),
+          Ringkasan.routename: (context) => Ringkasan()
         },
       ),
     );
