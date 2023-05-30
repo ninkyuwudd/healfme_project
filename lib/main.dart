@@ -14,9 +14,11 @@ import 'package:healthproject/screen/berita_detail_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/homepage.dart';
+import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/maps_page.dart';
 import 'package:healthproject/screen/navigationbar.dart';
+import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/splash_page.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +65,8 @@ class MyApp extends StatelessWidget {
           BeritaPage.routename :(context) => BeritaPage(),
           DetailBeritaPage.routename :(context) => DetailBeritaPage(),
           BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage()
+          FormPendaftaran.routename :(context) => FormPendaftaran(),
+          JadwalPoli.routename :(context) => JadwalPoli()
         },
       ),
     );
