@@ -42,10 +42,10 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
   Widget build(BuildContext context) {
     // Set<Marker> _marker = {};
     final arg = ModalRoute.of(context)?.settings.arguments as dynamic;
-    final lat = arg['lat'];
-    final long = arg['long'];
-    final name = arg['nama'];
-    final alamat = arg['detail'];
+    final lat = arg.lat;
+    final long = arg.long;
+    final name = arg.name;
+    final alamat = arg.detail;
     print(lat.toString());
     print(long.toString());
 

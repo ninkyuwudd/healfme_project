@@ -137,8 +137,10 @@ class _HomepageState extends State<Homepage> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "Apotik",
-                                    style: TextStyle(fontSize: 30),
+                                    "APOTEK",
+                                    style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -183,7 +185,12 @@ class _HomepageState extends State<Homepage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Berita Terkini",
+                                "Berita",
+                                style: TextStyle(
+                                    fontSize: 32, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Terkini",
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal),
@@ -193,8 +200,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         Spacer(),
                         Image(
-                          image: AssetImage("images/apotek.png"),
-                          width: 80,
+                          image: AssetImage("images/berita.png"),
+                          width: 100,
                         )
                       ],
                     ),
