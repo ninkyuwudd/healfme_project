@@ -86,31 +86,36 @@ class _JadwalPoliState extends State<JadwalPoli> {
                       Container(
                         child: Row(
                           children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              // color: Colors.brown,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: Color.fromARGB(255, 206, 75, 191),
-                                    width: 2),
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(left: 10, right: 10),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "22",
-                                    style: TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Text(
-                                    "Senin",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, FormPendaftaran.routename);
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                // color: Colors.brown,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: Color.fromARGB(255, 206, 75, 191),
+                                      width: 2),
+                                ),
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.only(left: 10, right: 10),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "22",
+                                      style: TextStyle(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      "Senin",
+                                      style: TextStyle(fontSize: 14),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
