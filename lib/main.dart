@@ -13,9 +13,13 @@ import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita_detail_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
+import 'package:healthproject/screen/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
+import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/maps_page.dart';
+import 'package:healthproject/screen/navigationbar.dart';
+import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/splash_page.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           primarySwatch: mcgpalette0,
         ),
-        home: Homepage(),
+        home: LoginPage(),
         routes: {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),
@@ -60,7 +64,11 @@ class MyApp extends StatelessWidget {
           ApotekList.routename :(context) => ApotekList(),
           UnggahKtpBpjs.routename :(context) => UnggahKtpBpjs(),
           BeritaPage.routename :(context) => BeritaPage(),
-          DetailBeritaPage.routename :(context) => DetailBeritaPage()
+          DetailBeritaPage.routename :(context) => DetailBeritaPage(),
+          BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage(),
+          FormPendaftaran.routename :(context) => FormPendaftaran(),
+          JadwalPoli.routename :(context) => JadwalPoli()
+          Ringkasan.routename: (context) => Ringkasan()
         },
       ),
     );

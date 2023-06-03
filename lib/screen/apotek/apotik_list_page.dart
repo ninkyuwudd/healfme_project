@@ -67,11 +67,12 @@ class _ApotekListState extends State<ApotekList> {
                   builder: (context, apotekprovider, _) {
                     print("lat :$curlat,long : $curlong");
                 final showdata = apotekprovider.apotek;
+
                 showdata.sort((a, b) {
                   double jarakA =
-                      hitungjarak(113.7164, a["lat"],-8.1651, a["long"]);
+                      hitungjarak(113.7164, a.lat,-8.1651, a.long);
                   double jarakB =
-                      hitungjarak(113.7164, b["lat"],-8.1651, b["long"]);
+                      hitungjarak(113.7164, b.lat,-8.1651, b.long);
                   return jarakA.compareTo(jarakB);
                 });
                 return Container(
@@ -80,7 +81,7 @@ class _ApotekListState extends State<ApotekList> {
                       itemBuilder: (context, index) {
                         final idxapotik = showdata[index];
                         double jarakterdekat = hitungjarak(113.7164,
-                            idxapotik["lat"], -8.1651, idxapotik["long"]);
+                            idxapotik.lat, -8.1651, idxapotik.long);
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(
@@ -104,7 +105,7 @@ class _ApotekListState extends State<ApotekList> {
                             child: ListTile(
                               leading: Text(
                                   "${jarakterdekat.toStringAsFixed(1)} km",style: TextStyle(color: Colors.black45),),
-                              title: Text(idxapotik["nama"],style: TextStyle(color: Colors.black87),),
+                              title: Text(idxapotik.name,style: TextStyle(color: Colors.black87),),
                               trailing: Image(image: AssetImage("images/maprow.png"),width: 40,),
                             ),
                           ),

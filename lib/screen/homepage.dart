@@ -3,6 +3,8 @@ import 'package:healthproject/screen/apotik_list_page.dart';
 import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
+import 'package:healthproject/screen/jadwal.dart';
+import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 
@@ -65,24 +67,37 @@ class _HomepageState extends State<Homepage> {
                       IconGrid(
                         img: "pumum",
                         poli: "Poli Umum",
-                        fungsi: (){
+                        fungsi: () {
                           Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                         },
                       ),
-                      IconGrid(img: "pgigi", poli: "Poli Gigi", fungsi: (){},),
-                      IconGrid(img: "plansia", poli: "Poli Lansia", fungsi: (){},),
+                      IconGrid(
+                        img: "pgigi",
+                        poli: "Poli Gigi",
+                        fungsi: () {
+                          Navigator.pushNamed(context, JadwalPoli.routename);
+                        },
+                      ),
+                      IconGrid(
+                        img: "plansia",
+                        poli: "Poli Lansia",
+                        fungsi: () {},
+                      ),
                       IconGrid(
                         img: "pgizi",
                         poli: "Poli Gizi",
-                      fungsi: (){},),
+                        fungsi: () {},
+                      ),
                       IconGrid(
                         img: "pkia",
                         poli: "Poli Kia",
-                      fungsi: (){},),
+                        fungsi: () {},
+                      ),
                       IconGrid(
                         img: "sanitasi",
                         poli: "Sanitasi",
-                      fungsi: (){},),
+                        fungsi: () {},
+                      ),
                     ],
                   ),
                 ),
@@ -97,7 +112,7 @@ class _HomepageState extends State<Homepage> {
                   height: 15,
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, ApotekList.routename);
                   },
                   child: Container(
@@ -122,8 +137,10 @@ class _HomepageState extends State<Homepage> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "Apotik",
-                                    style: TextStyle(fontSize: 30),
+                                    "APOTEK",
+                                    style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -149,7 +166,7 @@ class _HomepageState extends State<Homepage> {
                   height: 15,
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, BeritaPage.routename);
                   },
                   child: Container(
@@ -168,7 +185,12 @@ class _HomepageState extends State<Homepage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Berita Terkini",
+                                "Berita",
+                                style: TextStyle(
+                                    fontSize: 32, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Terkini",
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal),
@@ -178,8 +200,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         Spacer(),
                         Image(
-                          image: AssetImage("images/apotek.png"),
-                          width: 80,
+                          image: AssetImage("images/berita.png"),
+                          width: 100,
                         )
                       ],
                     ),
