@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           UnggahKtpBpjs.routename :(context) => UnggahKtpBpjs(),
           BeritaPage.routename :(context) => BeritaPage(),
           DetailBeritaPage.routename :(context) => DetailBeritaPage(),
-          BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage()
+          BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage(),
           FormPendaftaran.routename :(context) => FormPendaftaran(),
           JadwalPoli.routename :(context) => JadwalPoli()
         },

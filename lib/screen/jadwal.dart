@@ -45,7 +45,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   alignment: Alignment.topCenter,
                   margin: EdgeInsets.only(top: 20),
                   child: Text(
-                    "Pilih Jadwal Poli Umum uhuy",
+                    "Pilih Jadwal Poli Umum",
                     style: TextStyle(
                         color: Color.fromARGB(255, 65, 65, 65),
                         fontSize: 24,
@@ -58,7 +58,15 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   height: 160,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.white),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          spreadRadius: 2,
+                          blurRadius: 2,
+                          color: const Color.fromARGB(22, 0, 0, 0)
+                        )
+                      ]
+                      ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
