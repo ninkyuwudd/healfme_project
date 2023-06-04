@@ -18,7 +18,7 @@ Future<void> fetchData() async {
   _isloading = true;
   notifyListeners();
     try {
-      final response = await http.get(Uri.parse('https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoli?poli=Poli Umum'));
+      final response = await http.get(Uri.parse('https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoli?poli=Poli Gigi'));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);

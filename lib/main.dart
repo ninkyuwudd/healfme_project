@@ -22,7 +22,6 @@ import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/splash_page.dart';
-import 'package:healthproject/screen/testing/apijadwaltest.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -57,7 +56,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           primarySwatch: mcgpalette0,
         ),
-        home: Apijadwaltest(),
+        home: LoginPage(),
         routes: {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),
