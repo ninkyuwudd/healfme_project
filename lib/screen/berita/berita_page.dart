@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/berita_provider.dart';
-import 'package:healthproject/screen/berita_detail_page.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'berita_detail_page.dart';
 
 class BeritaPage extends StatefulWidget {
   static const routename = "/beritapage";

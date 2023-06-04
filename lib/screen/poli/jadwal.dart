@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/screen/pendaftaran.dart';
+import 'package:healthproject/screen/poli/pendaftaran.dart';
 
 // void main() async {
 //   runApp(const JadwalPoli());
