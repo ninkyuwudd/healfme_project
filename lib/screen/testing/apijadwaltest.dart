@@ -16,7 +16,7 @@ class _GetJadwalState extends State<GetJadwal> {
     // TODO: implement initState
     super.initState();
 
-    Provider.of<JadwalProvider>(context, listen: false).getJadwalPolidata();
+    Provider.of<JadwalProvider>(context, listen: false).getJadwalPolidata("Poli Umum","Senin");
   }
 
   @override

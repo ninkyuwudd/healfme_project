@@ -13,8 +13,10 @@ class JadwalProvider with ChangeNotifier{
   List<Users>? _dataJadwalPoli = [];
   List<Users>? get jadwalPoli => _dataJadwalPoli;
 
-  Future<void> getJadwalPolidata() async{
-    final url = "https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoliByDay?poli=Poli Umum&day=Senin";
+
+
+  Future<void> getJadwalPolidata(String poli,String hari) async{
+    final url = "https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoliByDay?poli=$poli&day=$hari";
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     if (response.statusCode == 200){

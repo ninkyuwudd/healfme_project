@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/jadwal/bordercontainer.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +18,23 @@ class JadwalPoli extends StatefulWidget {
 }
 
 class _JadwalPoliState extends State<JadwalPoli> {
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Provider.of<JadwalProvider>(context, listen: false).getJadwalPolidata("Poli Umum","Senin");
+  }
+
+  getdata()async{
+    CircularProgressIndicator();
+    Future.delayed(Duration(seconds: 5));
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+    var loadJadwal = Provider.of<JadwalProvider>(context);
     return Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -51,10 +67,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
                     alignment: Alignment.topCenter,
                     margin: EdgeInsets.only(top: 20),
                     child: Text(
-                      "Pilih Jadwal Poli Umum",
+                      "Pilih Jadwal",
                       style: TextStyle(
                           color: Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -77,34 +93,57 @@ class _JadwalPoliState extends State<JadwalPoli> {
                       child: Container(
                         child: Row(
                           children: [
-                            BorderContainer(fungsi: () {}, text: "Senin"),
-                            BorderContainer(fungsi: () {}, text: "Selasa"),
-                            BorderContainer(fungsi: () {}, text: "Rabu"),
-                            BorderContainer(fungsi: () {}, text: "Kamis"),
-                            BorderContainer(fungsi: () {}, text: "Jumat"),
-                            BorderContainer(fungsi: () {}, text: "Sabtu")
+                            CustomRadioButton(
+                              buttonLables: [
+                                "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"
+                              ], 
+                              buttonValues: ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"], 
+                              radioButtonValue: (value){
+                                loadJadwal.getJadwalPolidata("Poli Umum",value);
+                              }, 
+                              unSelectedColor: const Color.fromARGB(255, 223, 223, 223), 
+                              selectedColor: Color.fromARGB(255, 206, 75, 191)),
                           ],
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 20,),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 200,
+                    height: MediaQuery.of(context).size.height / 2 - 40,
                     child: Column(
                       children: [
-                        Text(loadJadwalProvider[0].nama),
+                        Text(loadJadwalProvider[0].nama,style: TextStyle(fontSize: 20),),
                         Expanded(
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: loadJadwalProvider[0].jadwalPoli.length,
                             itemBuilder: (context, idx) {
                               var getdata = loadJadwalProvider[0].jadwalPoli[idx];
-                              return Column(
-                                children: [
-                                  Text(getdata.hari),
-                                  Text(getdata.waktu)
-                                ],
+                              return GestureDetector(
+                                onTap: (){
+                                  print(getdata.hari);
+                                  print(getdata.waktu);
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(15),
+                                  padding: EdgeInsets.only(left: 20,right: 20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [BoxShadow(
+                                      color: Colors.black12,
+                                      spreadRadius: 2,
+                                      blurRadius: 2
+                                    )]
+                                  ),
+                                  child: ListTile(
+                                    title: Text(getdata.waktu),
+                                    subtitle: Text(getdata.hari),
+                                    trailing: Icon(Icons.arrow_right),
+                                  
+                                  ),
+                                ),
                               );
                             },
                           ),
