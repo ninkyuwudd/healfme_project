@@ -6,7 +6,8 @@ import 'Profil/profile_page.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   static const routename = "/navigator";
-  const BottomNavigationBarPage({super.key});
+
+  BottomNavigationBarPage({super.key});
 
   @override
   State<BottomNavigationBarPage> createState() => _BottomNavigationBarPageState();

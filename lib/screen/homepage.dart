@@ -1,24 +1,126 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/daftar_poli.dart';
 import 'package:healthproject/screen/poli/jadwal.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
+import 'package:provider/provider.dart';
 
 import 'apotek/apotik_list_page.dart';
 import 'berita/berita_page.dart';
 
 class Homepage extends StatefulWidget {
   static const routename = "/homepage";
-  const Homepage({super.key});
+  // final int idx;
+  // Homepage({super.key, required this.idx});
 
   @override
   State<Homepage> createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
+
+
+      List<List<int>> matrixToString(String string) {
+    List<int> nomor = string.split('').map(chrToInt).toList();
+    int length = nomor.length;
+    List<List<int>> M =
+        List.generate(2, (index) => List<int>.filled(length ~/ 2, 0));
+    int iterator = 0;
+    for (int column = 0; column < length ~/ 2; column++) {
+      for (int row = 0; row < 2; row++) {
+        M[row][column] = nomor[iterator];
+        iterator++;
+      }
+    }
+    return M;
+  }
+
+  int chrToInt(String char) {
+    char = char.toUpperCase();
+    int integer = char.codeUnitAt(0) - 65;
+    return integer;
+  }
+
+  int findMultipleInv(int determinant) {
+    int multipleInv = 1;
+    for (int i = 0; i < 26; i++) {
+      int inverse = determinant * i;
+      if (inverse % 26 == 1) {
+        multipleInv = i;
+        break;
+      }
+    }
+    return multipleInv;
+  }
+
+  List<List<int>> makeKey() {
+    int determinant = 0;
+    List<List<int>> C;
+    while (true) {
+      // String? chiper = stdin.readLineSync();
+      C = matrixToString("FRID");
+      determinant = C[0][0] * C[1][1] - C[0][1] * C[1][0];
+      determinant = determinant % 26;
+      int inverseElement = findMultipleInv(determinant);
+      if (inverseElement == -1) {
+        print("kunci tidak invertible");
+      } else if (C
+          .expand((row) => row)
+          .any((element) => element > 26 || element < 0)) {
+        print("hanya terima a - z");
+        print(C.expand((row) => row).reduce(max));
+        print(C.expand((row) => row).reduce(min));
+      } else {
+        break;
+      }
+    }
+    return C;
+  }
+
+
+
+
+  String dekripsi(String chip) {
+    List<List<int>> C = makeKey();
+
+    int determinan = C[0][0] * C[1][1] - C[0][1] * C[1][0];
+    determinan = determinan % 26;
+    int multicativeInv = findMultipleInv(determinan);
+
+    List<List<int>> CInverse = [
+      [C[1][1] * multicativeInv % 26, -C[0][1] * multicativeInv % 26],
+      [-C[1][0] * multicativeInv % 26, C[0][0] * multicativeInv % 26]
+    ];
+
+    List<List<int>> P = matrixToString(chip);
+    int msgLen = chip.length ~/ 2;
+    String dekripsiMsg = "";
+    for (int i = 0; i < msgLen; i++) {
+      int column0 = P[0][i] * CInverse[0][0] + P[1][i] * CInverse[0][1];
+      int integer = (column0 % 26 + 65).toInt();
+      dekripsiMsg += String.fromCharCode(integer);
+      int column1 = P[0][i] * CInverse[1][0] + P[1][i] * CInverse[1][1];
+      integer = (column1 % 26 + 65).toInt();
+      dekripsiMsg += String.fromCharCode(integer);
+    }
+
+    if (dekripsiMsg.endsWith("0")) {
+      dekripsiMsg = dekripsiMsg.substring(0, dekripsiMsg.length - 1);
+    }
+    return dekripsiMsg;
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    // final getdata = Provider.of<UserProvider>(context);
+    // final loadata
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

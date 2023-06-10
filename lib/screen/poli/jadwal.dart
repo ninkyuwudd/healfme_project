@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:healthproject/widget/jadwal/bordercontainer.dart';
 import 'package:provider/provider.dart';
-
-import '../../provider/jadwalPoli_provider.dart';
 
 // void main() async {
 //   runApp(const JadwalPoli());
@@ -18,160 +18,130 @@ class JadwalPoli extends StatefulWidget {
 
 class _JadwalPoliState extends State<JadwalPoli> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Provider.of<getWaktuProvider>(context, listen: false).fetchData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.black,
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            color: Colors.black,
+          ),
+          // IconButton(),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Image.asset(
+            'images/logodaftar.png',
+            height: 100,
+            width: 100,
+          ),
+          centerTitle: true,
         ),
-        // IconButton(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Image.asset(
-          'images/logodaftar.png',
-          height: 100,
-          width: 100,
-        ),
-        centerTitle: true,
-      ),
-      backgroundColor: const Color.fromARGB(255, 249, 249, 249),
-      body: Container(
-        margin: EdgeInsets.all(15),
-        child: Column(children: [
-          Container(
-            alignment: Alignment.topCenter,
-            margin: EdgeInsets.only(top: 20),
-            child: Text(
-              "Pilih Jadwal Poli Umum",
-              style: TextStyle(
-                  color: Color.fromARGB(255, 65, 65, 65),
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color:Colors.white,
-
-            ),
-            child: Row(
-              children: [
-                Text("nice"),
-                Text("nice")
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: 400,
-            width: MediaQuery.of(context).size.width,
-            child: Consumer<getWaktuProvider>(
-              builder: (context, value, child) {
-                final showdata = value.namPoli;
-
-                if (value.isLoading) {
-                  return Center(child: CircularProgressIndicator());
-                } else {
-                  return SingleChildScrollView(
-                    child: Container(
-                      height: 400,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: showdata.length,
-                        itemBuilder: (context, index) {
-                          final poli = showdata[index];
-
-                          return Container(
-                            height: 400,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: poli.jadwalpoli.length,
-                              itemBuilder: (context, index) {
-                                final getpoli = poli.jadwalpoli[index];
-
-                                return Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Color.fromARGB(255, 206, 75, 191),
-                                      width: 2,
-                                    ),
-                                  ),
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(
-                                      left: 10, right: 10, top: 25),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 20, right: 20),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          getpoli.hari,
-                                          style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          getpoli.waktu,
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        },
+        backgroundColor: const Color.fromARGB(255, 249, 249, 249),
+        body: Consumer<JadwalProvider>(
+            builder: ((context, jadwalprovider, child) {
+          final loadJadwalProvider = jadwalprovider.jadwalPoli;
+          if (loadJadwalProvider == null || loadJadwalProvider.isEmpty) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return SingleChildScrollView(
+              child: Container(
+                child: Column(children: [
+                  Container(
+                    alignment: Alignment.topCenter,
+                    margin: EdgeInsets.only(top: 20),
+                    child: Text(
+                      "Pilih Jadwal Poli Umum",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 15, right: 15),
+                    padding: EdgeInsets.all(5),
+                    width: MediaQuery.of(context).size.width,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              color: const Color.fromARGB(22, 0, 0, 0))
+                        ]),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        child: Row(
+                          children: [
+                            BorderContainer(fungsi: () {}, text: "Senin"),
+                            BorderContainer(fungsi: () {}, text: "Selasa"),
+                            BorderContainer(fungsi: () {}, text: "Rabu"),
+                            BorderContainer(fungsi: () {}, text: "Kamis"),
+                            BorderContainer(fungsi: () {}, text: "Jumat"),
+                            BorderContainer(fungsi: () {}, text: "Sabtu")
+                          ],
+                        ),
                       ),
                     ),
-                  );
-                }
-              },
-            ),
-          ),
-          Spacer(),
-          Container(
-         
-            width: MediaQuery.of(context).size.width,
-            height: 45,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 206, 75, 191),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                    child: Column(
+                      children: [
+                        Text(loadJadwalProvider[0].nama),
+                        Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: loadJadwalProvider[0].jadwalPoli.length,
+                            itemBuilder: (context, idx) {
+                              var getdata = loadJadwalProvider[0].jadwalPoli[idx];
+                              return Column(
+                                children: [
+                                  Text(getdata.hari),
+                                  Text(getdata.waktu)
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: 340,
+                    height: 45,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 206, 75, 191),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, FormPendaftaran.routename);
+                      },
+                      child: const Text(
+                        "Selanjutnya",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, FormPendaftaran.routename);
-              },
-              child: const Text(
-                "Selanjutnya",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
-        ]),
-      ),
-    );
+            );
+          }
+        })));
   }
 }

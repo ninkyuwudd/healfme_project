@@ -1,59 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/model/jadwalpoli_model.dart';
-import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:provider/provider.dart';
 
-class Apijadwaltest extends StatefulWidget {
+import '../../provider/jadwalPoli_provider.dart';
+
+class GetJadwal extends StatefulWidget {
+  const GetJadwal({super.key});
+
   @override
-  State<Apijadwaltest> createState() => _ApijadwaltestState();
+  State<GetJadwal> createState() => _GetJadwalState();
 }
 
-class _ApijadwaltestState extends State<Apijadwaltest> {
+class _GetJadwalState extends State<GetJadwal> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<getWaktuProvider>(context, listen: false).fetchData();
+
+    Provider.of<JadwalProvider>(context, listen: false).getJadwalPolidata();
   }
 
   @override
   Widget build(BuildContext context) {
-    final poliGigiProvider = Provider.of<getWaktuProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Hari Values'),
+          title: Text("test jadwal"),
         ),
-        body: Consumer<getWaktuProvider>(
-          builder: (context, value, _) {
-            final showdata = value.namPoli;
-            if (value.isLoading) {
+        body: Consumer<JadwalProvider>(
+          builder: (context, jadwalprovider, _) {
+            final jadwalspoli = jadwalprovider.jadwalPoli;
+            if (jadwalspoli == null || jadwalspoli.isEmpty) {
               return Center(child: CircularProgressIndicator());
             } else {
-              return ListView.builder(
-                  itemCount: showdata.length,
-                  itemBuilder: (context, index) {
-                    final poli = showdata[index];
-                    return Column(
-                      children: [
-                        Text("nama: ${poli.nama}"),
-                        
-                       
-                    
-                        ListView.builder(
+              return Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  child: Column(
+                    children: [
+                      Text(jadwalspoli[0].nama),
+                      Expanded(
+                        child: ListView.builder(
                           shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          itemCount: poli.jadwalpoli.length,
-                          itemBuilder: (context, index) {
-                            final jadwal = poli.jadwalpoli[index];
-                            return ListTile(
-                              title: Text(jadwal.hari),
-                              subtitle: Text(jadwal.waktu),
+                          itemCount: jadwalspoli[0].jadwalPoli.length,
+                          itemBuilder: (context, idx) {
+                            var getdata = jadwalspoli[0].jadwalPoli[idx];
+                            return Column(
+                              children: [
+                                Text(getdata.hari),
+                                Text(getdata.waktu)
+                              ],
                             );
                           },
-                        )
-                      ],
-                    );
-                  });
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
             }
           },
         ));

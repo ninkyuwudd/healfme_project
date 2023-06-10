@@ -1,41 +1,89 @@
+
+
+
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:healthproject/model/jadwalpoli_model.dart';
+
+import '../model/jadwal_model.dart';
 import 'package:http/http.dart' as http;
 
-class getWaktuProvider extends ChangeNotifier{
-  // List<PoliGigi> waktuValue = [];
-  List<PoliGigi> _namapoli = [];
-  List<PoliGigi> get namPoli => _namapoli;
-  bool _isloading = false;
-  bool get isLoading => _isloading;
-  String _errormessage = '';
-  String get errorMessage => _errormessage;
+class JadwalProvider with ChangeNotifier{
+  List<Users>? _dataJadwalPoli = [];
+  List<Users>? get jadwalPoli => _dataJadwalPoli;
 
+  Future<void> getJadwalPolidata() async{
+    final url = "https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoliByDay?poli=Poli Umum&day=Senin";
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    if (response.statusCode == 200){
+      final jsonData = json.decode(response.body);
+      final jadwalPoli = jsonData['data'] as List<dynamic>;
+      final List<Users> loadedJadwalPoli = [];
 
-Future<void> fetchData() async {
-  _isloading = true;
-  notifyListeners();
-    try {
-      final response = await http.get(Uri.parse('https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoli?poli=Poli Gigi'));
+      jadwalPoli.forEach((element) {
+        loadedJadwalPoli.add(Users.fromJson(element));
+       });
 
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        _namapoli = (data['data'] as List).map((dt) => PoliGigi.fromJson(dt)
-          ).toList();
-          notifyListeners();
-      } else {
-        throw Exception('Failed to fetch data');
-      }
-    } catch (error) {
-      throw Exception('Failed to fetch data: $error');
+      _dataJadwalPoli = loadedJadwalPoli;
+      print(jsonData["data"]);
+      notifyListeners();
+    }
+    else{
+      throw Exception("failed to load jadwalpoli data");
     }
 
-    _isloading = false;
-    notifyListeners();
   }
+
 }
+
+
+
+
+
+
+
+
+
+// import 'dart:convert';
+
+// import 'package:flutter/material.dart';
+// import 'package:healthproject/model/jadwalpoli_model.dart';
+// import 'package:http/http.dart' as http;
+
+// class getWaktuProvider extends ChangeNotifier{
+//   // List<PoliGigi> waktuValue = [];
+//   List<PoliGigi> _namapoli = [];
+//   List<PoliGigi> get namPoli => _namapoli;
+//   bool _isloading = false;
+//   bool get isLoading => _isloading;
+//   String _errormessage = '';
+//   String get errorMessage => _errormessage;
+
+
+// Future<void> fetchData() async {
+//   _isloading = true;
+//   notifyListeners();
+//     try {
+//       final response = await http.get(Uri.parse('https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoli?poli=Poli Gigi'));
+
+//       if (response.statusCode == 200) {
+//         final data = json.decode(response.body);
+//         _namapoli = (data['data'] as List).map((dt) => PoliGigi.fromJson(dt)
+//           ).toList();
+//           notifyListeners();
+//       } else {
+//         throw Exception('Failed to fetch data');
+//       }
+//     } catch (error) {
+//       throw Exception('Failed to fetch data: $error');
+//     }
+
+//     _isloading = false;
+//     notifyListeners();
+//   }
+// }
 
 
 
