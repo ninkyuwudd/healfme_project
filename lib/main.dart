@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
           primarySwatch: mcgpalette0,
         ),
-        home: JadwalPoli(),
+        home: LoginPage(),
         routes: {
           Homepage.routename: (context) => Homepage(),
           LoginPage.routename: (context) => LoginPage(),

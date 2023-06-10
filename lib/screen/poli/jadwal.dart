@@ -3,6 +3,7 @@ import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/jadwal/bordercontainer.dart';
+import 'package:healthproject/widget/popup_warning.dart';
 import 'package:provider/provider.dart';
 
 // void main() async {
@@ -18,19 +19,23 @@ class JadwalPoli extends StatefulWidget {
 }
 
 class _JadwalPoliState extends State<JadwalPoli> {
-    @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    Provider.of<JadwalProvider>(context, listen: false).getJadwalPolidata("Poli Umum","Senin");
+    Provider.of<JadwalProvider>(context, listen: false)
+        .getJadwalPolidata("Poli Umum", "Senin");
   }
 
-  getdata()async{
+  getdata() async {
     CircularProgressIndicator();
     Future.delayed(Duration(seconds: 5));
-    
   }
+
+  String _char = "";
+
+  var _valraido = "";
 
   @override
   Widget build(BuildContext context) {
@@ -94,54 +99,84 @@ class _JadwalPoliState extends State<JadwalPoli> {
                         child: Row(
                           children: [
                             CustomRadioButton(
-                              buttonLables: [
-                                "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"
-                              ], 
-                              buttonValues: ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"], 
-                              radioButtonValue: (value){
-                                loadJadwal.getJadwalPolidata("Poli Umum",value);
-                              }, 
-                              unSelectedColor: const Color.fromARGB(255, 223, 223, 223), 
-                              selectedColor: Color.fromARGB(255, 206, 75, 191)),
+                                buttonLables: [
+                                  "Senin",
+                                  "Selasa",
+                                  "Rabu",
+                                  "Kamis",
+                                  "Jumat",
+                                  "Sabtu"
+                                ],
+                                buttonValues: [
+                                  "Senin",
+                                  "Selasa",
+                                  "Rabu",
+                                  "Kamis",
+                                  "Jumat",
+                                  "Sabtu"
+                                ],
+                                radioButtonValue: (value) {
+                                  _char = "";
+                                  loadJadwal.getJadwalPolidata(
+                                      "Poli Umum", value);
+                                },
+                                unSelectedColor:
+                                    const Color.fromARGB(255, 223, 223, 223),
+                                selectedColor:
+                                    Color.fromARGB(255, 206, 75, 191)),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 2 - 40,
                     child: Column(
                       children: [
-                        Text(loadJadwalProvider[0].nama,style: TextStyle(fontSize: 20),),
+                        Text(
+                          loadJadwalProvider[0].nama,
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Expanded(
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: loadJadwalProvider[0].jadwalPoli.length,
                             itemBuilder: (context, idx) {
-                              var getdata = loadJadwalProvider[0].jadwalPoli[idx];
+                              var getdata =
+                                  loadJadwalProvider[0].jadwalPoli[idx];
                               return GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   print(getdata.hari);
                                   print(getdata.waktu);
                                 },
                                 child: Container(
                                   margin: EdgeInsets.all(15),
-                                  padding: EdgeInsets.only(left: 20,right: 20),
+                                  padding: EdgeInsets.only(left: 20, right: 20),
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [BoxShadow(
-                                      color: Colors.black12,
-                                      spreadRadius: 2,
-                                      blurRadius: 2
-                                    )]
-                                  ),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black12,
+                                            spreadRadius: 2,
+                                            blurRadius: 2)
+                                      ]),
                                   child: ListTile(
                                     title: Text(getdata.waktu),
                                     subtitle: Text(getdata.hari),
                                     trailing: Icon(Icons.arrow_right),
-                                  
+                                    leading: Radio(
+                                      value: getdata.waktu,
+                                      groupValue: _char,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _char = value as String;
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ),
                               );
@@ -166,7 +201,16 @@ class _JadwalPoliState extends State<JadwalPoli> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, FormPendaftaran.routename);
+                        if(_char == ""){
+                          showDialog(context: context, builder: (context){
+                            return PopupWarning(pesan: "Pilih Jadwal terlebih dahulu !");
+                          });
+                        }else{
+                          print("jam : $_char");
+                          Navigator.pushNamed(context, FormPendaftaran.routename);
+                        }
+                        
+                        
                       },
                       child: const Text(
                         "Selanjutnya",
