@@ -51,6 +51,7 @@ dependencies:
   intl: ^0.18.1
   url_launcher: ^6.1.11
   custom_radio_grouped_button: ^2.2.0
+  qr_flutter: ^4.1.0
   
 
 dev_dependencies:

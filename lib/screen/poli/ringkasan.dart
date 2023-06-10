@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../widget/textringkasan.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:intl/intl.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Ringkasan extends StatefulWidget {
   static const routename = "/Ringkasan";
@@ -17,7 +18,6 @@ class Ringkasan extends StatefulWidget {
 }
 
 class _RingkasanState extends State<Ringkasan> {
-  
   @override
   Widget build(BuildContext context) {
     var getuser = Provider.of<UserProvider>(context);
@@ -29,7 +29,8 @@ class _RingkasanState extends State<Ringkasan> {
             appBar: AppBar(
               leading: BackButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
+                  Navigator.pushReplacementNamed(
+                      context, BottomNavigationBarPage.routename);
                 },
                 color: Colors.black,
               ),
@@ -152,31 +153,31 @@ class _RingkasanState extends State<Ringkasan> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   TextRingkasan(
-                                    isi: getu,
+                                    isi: dataUser[0],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "3509133546546",
+                                    isi: dataUser[1],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "jl. tutwurihandayani",
+                                    isi: dataUser[2],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "Perempuan",
+                                    isi: dataUser[4],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "35 tahun",
+                                    isi: dataUser[3],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "BPJS",
+                                    isi: dataUser[5],
                                     isi2: Color.fromARGB(255, 23, 23, 23),
                                   ),
                                   TextRingkasan(
-                                    isi: "0023611894",
+                                    isi: dataUser[6],
                                     isi2: Color.fromARGB(255, 23, 23, 23),
                                   ),
                                 ],
@@ -185,13 +186,27 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(140, 370, 20, 0),
-                          child: Image.asset(
-                            'images/qr_code.png',
-                            height: 120,
-                            width: 120,
-                          ),
-                        ),
+                          width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.fromLTRB(20, 350, 20, 50),
+                            child: Center(
+                              child: QrImageView(
+                                data: 
+                                
+                                '''
+        Nama        : ${dataUser[0]}
+        Nik         : ${dataUser[1]}
+        Alamat      : ${dataUser[2]}
+        Gender      : ${dataUser[4]} 
+        Usia        : ${dataUser[3]}
+        Penjamin    : ${dataUser[5]}
+        no penjamin : ${dataUser[6]}
+                                ''',
+                                version: QrVersions.auto,
+                                size: 150,
+                                gapless: false,
+                              ),
+                            )),
+               
                         Container(
                           margin: EdgeInsets.fromLTRB(60, 485, 20, 0),
                           child: Text(
@@ -251,13 +266,13 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                         onPressed: () {
-                          print(DateFormat.d().format(DateTime.now()));
-                          if(DateTime.now().weekday + 7 == 13){
+                          // print(DateFormat.d().format(DateTime.now()));
+                          // if(DateTime.now().weekday + 7 == 13){
 
-                            var x = int.parse(DateFormat.d().format(DateTime.now())) - 5;
-                            print(x);
-                          }
-                          print("nope");
+                          //   var x = int.parse(DateFormat.d().format(DateTime.now())) - 5;
+                          //   print(x);
+                          // }
+                          // print("nope");
                           // Navigator.pushNamed(
                           //     context, FormPendaftaran.routename);
                         },
@@ -287,6 +302,7 @@ class _RingkasanState extends State<Ringkasan> {
                         onPressed: () {
                           Navigator.pushNamed(
                               context, FormPendaftaran.routename);
+                          // Navigator.pop(context);
                         },
                         child: const Text(
                           "eAntrian",
