@@ -79,9 +79,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Image(
                     image: AssetImage(
-                      "images/logo_only.png",
+                      "images/logo.png",
                     ),
-                    width: 200,
+                    width: 100,
                   ),
                   SizedBox(
                     height: 20,
@@ -180,9 +180,10 @@ class _LoginPageState extends State<LoginPage> {
                                   print(usersitem[i].username);
                                   if (username.text == usersitem[i].username &&
                                       password.text == usersitem[i].password) {
-                                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
+                                    Navigator.pushReplacementNamed(context,
+                                        BottomNavigationBarPage.routename);
                                     notallowedalert = false;
-                                    
+
                                     break;
                                   } else {
                                     notallowedalert = true;
@@ -209,7 +210,8 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 child: Text("Register",
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 222, 33, 121),
+                                        color:
+                                            Color.fromARGB(255, 222, 33, 121),
                                         fontWeight: FontWeight.bold))),
                           ],
                         ),
