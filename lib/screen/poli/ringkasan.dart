@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/model/jadwalpoli_model.dart';
+import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/screen/navigationbar.dart';
+import 'package:provider/provider.dart';
 import '../../widget/textringkasan.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:intl/intl.dart';
 
 class Ringkasan extends StatefulWidget {
   static const routename = "/Ringkasan";
@@ -12,8 +16,10 @@ class Ringkasan extends StatefulWidget {
 }
 
 class _RingkasanState extends State<Ringkasan> {
+  
   @override
   Widget build(BuildContext context) {
+    var getjadwal = Provider.of<JadwalProvider>(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -50,17 +56,6 @@ class _RingkasanState extends State<Ringkasan> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    // Container(
-                    //   height: MediaQuery.of(context).size.height,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   decoration: BoxDecoration(
-                    //       image: DecorationImage(
-                    //     image: AssetImage('images/bgringkasan.png'),
-                    //   )),
-                    //   child: Column(
-                    //     children: [Text("testing")],
-                    //   ),
-                    // )
                     Stack(
                       children: [
                         Container(
@@ -228,7 +223,7 @@ class _RingkasanState extends State<Ringkasan> {
                             Container(
                                 margin: EdgeInsets.fromLTRB(132, 0, 0, 0),
                                 child: Text(
-                                  "Minggu, 30 April 2023",
+                                  "${getjadwal.pilihanJadwal[1]}, ${getjadwal.pilihanJadwal[0]}",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 206, 75, 191),
                                       fontSize: 14,
@@ -253,8 +248,15 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(
-                              context, FormPendaftaran.routename);
+                          print(DateFormat.d().format(DateTime.now()));
+                          if(DateTime.now().weekday + 7 == 13){
+
+                            var x = int.parse(DateFormat.d().format(DateTime.now())) - 5;
+                            print(x);
+                          }
+                          print("nope");
+                          // Navigator.pushNamed(
+                          //     context, FormPendaftaran.routename);
                         },
                         child: const Text(
                           "Selesai Check-in",

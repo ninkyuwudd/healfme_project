@@ -13,6 +13,13 @@ class JadwalProvider with ChangeNotifier{
   List<Users>? _dataJadwalPoli = [];
   List<Users>? get jadwalPoli => _dataJadwalPoli;
 
+  List pilihanJadwal = [];
+
+
+  getUserJadwal(List userjadwal){
+    pilihanJadwal = userjadwal;
+    notifyListeners();
+  }
 
 
   Future<void> getJadwalPolidata(String poli,String hari) async{

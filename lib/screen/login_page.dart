@@ -297,10 +297,9 @@ class _LoginPageState extends State<LoginPage> {
                               if (password.text.isNotEmpty &
                                   username.text.isNotEmpty) {
                                 for (var i = 0; i < usersitem.length; i++) {
-                                  // print(dekripsi(usersitem[i].password ?? ""));
-                                  // print(usersitem[i].username?.toLowerCase());
+
                                   if (username.text == usersitem[i].username &&
-                                      password.text.toUpperCase() == dekripsi(usersitem[i].password ?? "")) {
+                                      password.text == usersitem[i].password) {
                                   Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
                                     notallowedalert = false;
                                     

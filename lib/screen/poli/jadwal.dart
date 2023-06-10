@@ -4,6 +4,7 @@ import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/jadwal/bordercontainer.dart';
 import 'package:healthproject/widget/popup_warning.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // void main() async {
@@ -34,6 +35,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
   }
 
   String _char = "";
+  String hari = "";
 
   var _valraido = "";
 
@@ -173,6 +175,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                       groupValue: _char,
                                       onChanged: (value) {
                                         setState(() {
+                                          hari = getdata.hari;
                                           _char = value as String;
                                         });
                                       },
@@ -207,6 +210,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
                           });
                         }else{
                           print("jam : $_char");
+                          print("hari : $hari");
+                          // print(DateFormat.E().format(DateTime.now()));
+                          List jadwalPilihan = [_char,hari];
+                          loadJadwal.getUserJadwal(jadwalPilihan);
                           Navigator.pushNamed(context, FormPendaftaran.routename);
                         }
                         
