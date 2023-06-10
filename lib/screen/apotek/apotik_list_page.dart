@@ -3,8 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/apotik_provider.dart';
 import 'package:healthproject/provider/geolocator_provider.dart';
-import 'package:healthproject/screen/apotik_maps_page.dart';
 import 'package:provider/provider.dart';
+
+import 'apotik_maps_page.dart';
 
 class ApotekList extends StatefulWidget {
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // ignore: unused_import
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:healthproject/screen/poli/daftar_poli.dart';
 
 // void main() async {
 //   runApp(const FormPendaftaran());
@@ -309,10 +310,10 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                         ),
                         onPressed: () {
                           if (_formState.currentState!.validate()) {
-                            print('Anjai bisa');
-                            // Kalo uda divalidasi taro disini
+                            
+                            Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
-                            print("gila lo");
+                            
                           }
                         },
                         child: const Text(

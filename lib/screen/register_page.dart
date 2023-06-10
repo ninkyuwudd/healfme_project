@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:healthproject/widget/rounded_cek_field.dart';
-
+import 'dart:math';
 import '../widget/rounded_field_white.dart';
 import 'login_page.dart';
 
@@ -33,6 +34,9 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   final firestoredb = FirebaseFirestore.instance.collection('users');
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,12 +54,14 @@ class _RegisterPageState extends State<RegisterPage> {
             elevation: 0,
             title: Text(
               "Daftar",
-              style: TextStyle(fontSize: 30,color: Color.fromARGB(255, 255, 7, 189), fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 255, 7, 189),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           body: SingleChildScrollView(
             child: Container(
-
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.only(bottom: 20, left: 10, right: 10, top: 20),
               child: Column(
@@ -63,7 +69,54 @@ class _RegisterPageState extends State<RegisterPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     RoundeFieldWhiteCheck(valuenya: nama, title: "Nama", hover: "Masukkan Nama"),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Nama",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 65, 65, 65),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              controller: password,
+                               inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))],
+                              onChanged: (value) {
+                                if (value == "") {
+                                  setState(() {
+                                    ckpass = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    ckpass = false;
+                                  });
+                                }
+                              },
+                              decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 10),
+                                  border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  hintText: "masukkan nama",
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  // ignore: dead_code
+                                  errorText: ckpass
+                                      ? "password Can't be empty!"
+                                      : null),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
                       RoundeFieldWhite(
                           check: ckusername,
                           valuenya: username,
@@ -136,15 +189,62 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
-                    
                       RoundeFieldWhiteCheck(
                           valuenya: phone,
                           title: "Phone",
                           hover: "masukkan phone.."),
-                      RoundeFieldWhiteCheck(
-                          valuenya: password,
-                          title: "Password",
-                          hover: "masukkan password.."),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Password",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 65, 65, 65),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              controller: password,
+                               inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))],
+                              onChanged: (value) {
+                                if (value == "") {
+                                  setState(() {
+                                    ckpass = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    ckpass = false;
+                                  });
+                                }
+                              },
+                              decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 10),
+                                  border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  hintText: "masukkan password",
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  // ignore: dead_code
+                                  errorText: ckpass
+                                      ? "password Can't be empty!"
+                                      : null),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                      // RoundeFieldWhiteCheck(
+                      //     valuenya: password,
+                      //     title: "Password",
+                      //     hover: "masukkan password.."),
                     ],
                   ),
                   SizedBox(

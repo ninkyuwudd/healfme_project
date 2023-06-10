@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widget/textringkasan.dart';
-import 'package:healthproject/screen/pendaftaran.dart';
+import 'package:healthproject/screen/navigationbar.dart';
+import '../../widget/textringkasan.dart';
+import 'package:healthproject/screen/poli/pendaftaran.dart';
 
 class Ringkasan extends StatefulWidget {
   static const routename = "/Ringkasan";
@@ -19,7 +20,7 @@ class _RingkasanState extends State<Ringkasan> {
             appBar: AppBar(
               leading: BackButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
                 },
                 color: Colors.black,
               ),
@@ -45,7 +46,7 @@ class _RingkasanState extends State<Ringkasan> {
                         "Ringkasan e-booking",
                         style: TextStyle(
                             color: Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                     ),

@@ -6,22 +6,23 @@ import 'package:healthproject/provider/apotik_provider.dart';
 import 'package:healthproject/provider/berita_provider.dart';
 import 'package:healthproject/provider/geolocator_provider.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
+import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/provider/maps_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
-import 'package:healthproject/screen/apotik_list_page.dart';
-import 'package:healthproject/screen/apotik_maps_page.dart';
-import 'package:healthproject/screen/berita_detail_page.dart';
-import 'package:healthproject/screen/berita_page.dart';
-import 'package:healthproject/screen/daftar_poli.dart';
-import 'package:healthproject/screen/ringkasan.dart';
+import 'package:healthproject/screen/apotek/apotik_list_page.dart';
+import 'package:healthproject/screen/apotek/apotik_maps_page.dart';
+import 'package:healthproject/screen/berita/berita_detail_page.dart';
+import 'package:healthproject/screen/berita/berita_page.dart';
+import 'package:healthproject/screen/poli/daftar_poli.dart';
+import 'package:healthproject/screen/poli/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
-import 'package:healthproject/screen/jadwal.dart';
+import 'package:healthproject/screen/poli/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
-import 'package:healthproject/screen/maps_page.dart';
 import 'package:healthproject/screen/navigationbar.dart';
-import 'package:healthproject/screen/pendaftaran.dart';
+import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/splash_page.dart';
+import 'package:healthproject/screen/testing/apijadwaltest.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => MapsApiProvider()),
         ChangeNotifierProvider(create: (_) => ApotekProvider()),
         ChangeNotifierProvider(create: (_) => CurrentLocProvider()),
-        ChangeNotifierProvider(create: (_) => BeritaProvider())
+        ChangeNotifierProvider(create: (_) => BeritaProvider()),
+        ChangeNotifierProvider(create: (_) => JadwalProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
           DetailBeritaPage.routename :(context) => DetailBeritaPage(),
           BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage(),
           FormPendaftaran.routename :(context) => FormPendaftaran(),
-          JadwalPoli.routename :(context) => JadwalPoli()
+          JadwalPoli.routename :(context) => JadwalPoli(),
           Ringkasan.routename: (context) => Ringkasan()
         },
       ),

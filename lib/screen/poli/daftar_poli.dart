@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
+import 'package:healthproject/screen/poli/ringkasan.dart';
 import 'package:provider/provider.dart';
 
-import '../widget/daftar/btn_takefoto.dart';
+import '../../widget/daftar/btn_takefoto.dart';
 
 class UnggahKtpBpjs extends StatefulWidget {
   static const routename = '/unggahbpjs';
@@ -43,6 +44,19 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
                 onPressed: (){
                   print(loadbpjs);
                   print(loadktp);
+                  showDialog(context: context, builder: (context) => AlertDialog(
+                    title: Text("Apakah data anda sudah benar?"),
+                    content: Text("Data yang telah diinput kan tidak bisa diubah lagi"),
+                    actions: [
+                      ElevatedButton(onPressed: (){
+                        Navigator.pushReplacementNamed(context, Ringkasan.routename);
+                      }, child: Text("Ya")),
+                      ElevatedButton(onPressed: (){
+                        Navigator.pop(context);
+                      }, child: Text("Tidak"))
+                    ],
+
+                  ));
               }, child: const Text("Kirim"))
             ],
           ),

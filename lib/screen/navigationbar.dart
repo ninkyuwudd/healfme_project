@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/screen/eantrian_page.dart';
+import 'package:healthproject/screen/poli/eantrian_page.dart';
 import 'package:healthproject/screen/homepage.dart';
-import 'package:healthproject/screen/profile_page.dart';
+import 'Profil/profile_page.dart';
 
 
 class BottomNavigationBarPage extends StatefulWidget {
   static const routename = "/navigator";
-  const BottomNavigationBarPage({super.key});
+
+  BottomNavigationBarPage({super.key});
 
   @override
   State<BottomNavigationBarPage> createState() => _BottomNavigationBarPageState();
