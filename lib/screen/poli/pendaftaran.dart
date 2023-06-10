@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// ignore: unused_import
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/daftar_poli.dart';
 import 'package:healthproject/widget/daftar/form_common.dart';
 import 'package:healthproject/widget/daftar/form_number.dart';
+import 'package:provider/provider.dart';
 
-// void main() async {
-//   runApp(const FormPendaftaran());
-// }
+
 
 class FormPendaftaran extends StatefulWidget {
   static const routename = "/FormPendaftaran";
@@ -31,6 +29,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
 
   @override
   Widget build(BuildContext context) {
+    var getuser = Provider.of<UserProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -157,10 +156,11 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                    
 
                     const SizedBox(
-                      height: 70,
+                      height: 50,
                     ),
-                    SizedBox(
-                      width: 340,
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      width: MediaQuery.of(context).size.width,
                       height: 45,
                       child: TextButton(
                         style: TextButton.styleFrom(
@@ -172,10 +172,11 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                         ),
                         onPressed: () {
                           if (_formState.currentState!.validate()) {
-                            
+                            List dataResult = [nama.text,usia.text,nik.text,alamat.text,gender,penjamin,nopenjamin.text];
+                            getuser.getDataPribadiUser(dataResult);
                             Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
-                            
+                            print("masih kosong");
                           }
                         },
                         child: const Text(

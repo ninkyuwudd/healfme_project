@@ -8,6 +8,15 @@ class UserProvider extends ChangeNotifier {
 
   List<UsersAkun> get akun => _usrakun;
 
+
+  List dataPribadiUser = [];
+
+  getDataPribadiUser(List data){
+    dataPribadiUser = data;
+    notifyListeners();
+  }
+
+
   void fethcdatauser() async {
     QuerySnapshot<Map<String, dynamic>> usrdataloc =
         await FirebaseFirestore.instance.collection('users').get();

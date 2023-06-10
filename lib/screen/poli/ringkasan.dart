@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/model/jadwalpoli_model.dart';
 import 'package:healthproject/provider/jadwalPoli_provider.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/navigationbar.dart';
 import 'package:provider/provider.dart';
 import '../../widget/textringkasan.dart';
@@ -19,6 +20,8 @@ class _RingkasanState extends State<Ringkasan> {
   
   @override
   Widget build(BuildContext context) {
+    var getuser = Provider.of<UserProvider>(context);
+    var dataUser = getuser.dataPribadiUser;
     var getjadwal = Provider.of<JadwalProvider>(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -149,7 +152,7 @@ class _RingkasanState extends State<Ringkasan> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   TextRingkasan(
-                                    isi: "Amanda Vania",
+                                    isi: getu,
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
