@@ -8,16 +8,17 @@ import 'package:healthproject/provider/geolocator_provider.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/maps_provider.dart';
 import 'package:healthproject/provider/user_repo.dart';
-import 'package:healthproject/screen/apotik_list_page.dart';
-import 'package:healthproject/screen/apotik_maps_page.dart';
-import 'package:healthproject/screen/berita_detail_page.dart';
-import 'package:healthproject/screen/berita_page.dart';
+import 'package:healthproject/screen/apotek/apotik_list_page.dart';
+import 'package:healthproject/screen/apotek/apotik_maps_page.dart';
+import 'package:healthproject/screen/berita/berita_detail_page.dart';
+import 'package:healthproject/screen/berita/berita_page.dart';
+
 import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
 import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
-import 'package:healthproject/screen/maps_page.dart';
+
 import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
           DetailBeritaPage.routename :(context) => DetailBeritaPage(),
           BottomNavigationBarPage.routename :(context) => BottomNavigationBarPage(),
           FormPendaftaran.routename :(context) => FormPendaftaran(),
-          JadwalPoli.routename :(context) => JadwalPoli()
+          JadwalPoli.routename :(context) => JadwalPoli(),
           Ringkasan.routename: (context) => Ringkasan()
         },
       ),

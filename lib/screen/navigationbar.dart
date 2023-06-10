@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/screen/eantrian_page.dart';
 import 'package:healthproject/screen/homepage.dart';
-import 'package:healthproject/screen/profile_page.dart';
+
+import 'Profil/profile_page.dart';
+
 
 
 class BottomNavigationBarPage extends StatefulWidget {
