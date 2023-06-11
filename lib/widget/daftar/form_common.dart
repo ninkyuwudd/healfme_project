@@ -12,7 +12,7 @@ class FormCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
                       margin:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                          const EdgeInsets.only(top: 20, left: 10, right:10),
                       child: TextFormField(
                         autofocus: true,
                         controller: value,

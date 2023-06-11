@@ -84,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               height: 10,
                             ),
                             TextField(
-                              controller: password,
+                              controller: nama,
                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))],
                               onChanged: (value) {
                                 if (value == "") {
@@ -209,7 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             TextField(
                               controller: password,
-                               inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'))],
+
                               onChanged: (value) {
                                 if (value == "") {
                                   setState(() {
@@ -311,22 +311,23 @@ class _RegisterPageState extends State<RegisterPage> {
                               password.text.isNotEmpty &&
                               phone.text.isNotEmpty &&
                               username.text.isNotEmpty) {
-                            String id = DateTime.now()
-                                .millisecondsSinceEpoch
-                                .toString();
-                            firestoredb.doc(id).set({
+                            // String id = DateTime.now()
+                            //     .millisecondsSinceEpoch
+                            //     .toString();
+                            firestoredb.doc().set({
                               "nama": nama.text,
                               "username": username.text.trim(),
                               "email": email.text,
                               "gender": value,
                               "phone": phone.text,
-                              "password": password.text
+                              "password": password.text,
+                              "gambar" : ""
                             });
                             firestoredb
-                                .doc(id)
+                                .doc()
                                 .collection('private data')
-                                .doc(id)
-                                .set({"id": id});
+                                .doc()
+                                .set({"id": ""});
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

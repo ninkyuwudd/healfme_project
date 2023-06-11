@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +10,7 @@ import 'package:healthproject/provider/geolocator_provider.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
 import 'package:healthproject/provider/jadwalPoli_provider.dart';
 import 'package:healthproject/provider/maps_provider.dart';
+import 'package:healthproject/provider/pilihfile_controller.dart';
 import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/Profil/about.dart';
 import 'package:healthproject/screen/Profil/edit_profil.dart';
@@ -48,7 +51,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ApotekProvider()),
         ChangeNotifierProvider(create: (_) => CurrentLocProvider()),
         ChangeNotifierProvider(create: (_) => BeritaProvider()),
-        ChangeNotifierProvider(create: (_) => JadwalProvider())
+        ChangeNotifierProvider(create: (_) => JadwalProvider()),
+        ChangeNotifierProvider(create: (_) => PilihUploadfile())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -5,13 +5,20 @@ import '../model/user_model.dart';
 
 class UserProvider extends ChangeNotifier {
   List<UsersAkun> _usrakun = [];
-
   List<UsersAkun> get akun => _usrakun;
+
+  List getUserData = [];
 
 
   List dataPribadiUser = [];
 
   bool daftar = false;
+
+  insertDataSekarang(List data){
+    getUserData = data;
+    notifyListeners();
+  }
+
 
   changeDaftarStatus(bool status){
     daftar = status;
@@ -35,7 +42,9 @@ class UserProvider extends ChangeNotifier {
             email: doc.data()['email'],
             gender: doc.data()['gender'],
             phone: doc.data()['phone'],
-            password: doc.data()['password']))
+            password: doc.data()['password'],
+            gambar: doc.data()['gambar']
+            ))
         .toList();
         notifyListeners();
   }
