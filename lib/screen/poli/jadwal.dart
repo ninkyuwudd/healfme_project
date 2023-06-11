@@ -24,9 +24,12 @@ class _JadwalPoliState extends State<JadwalPoli> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+          var getNamaPoli = ModalRoute.of(context)!.settings.arguments as String;
+           Provider.of<JadwalProvider>(context, listen: false)
+        .getJadwalPolidata(getNamaPoli, "Senin");
+    });
 
-    Provider.of<JadwalProvider>(context, listen: false)
-        .getJadwalPolidata("Poli Umum", "Senin");
   }
 
   getdata() async {
@@ -37,10 +40,9 @@ class _JadwalPoliState extends State<JadwalPoli> {
   String _char = "";
   String hari = "";
 
-  var _valraido = "";
-
   @override
   Widget build(BuildContext context) {
+    var getNamaPoli = ModalRoute.of(context)!.settings.arguments as String;
     var loadJadwal = Provider.of<JadwalProvider>(context);
     return Scaffold(
         appBar: AppBar(
@@ -61,13 +63,15 @@ class _JadwalPoliState extends State<JadwalPoli> {
           centerTitle: true,
         ),
         backgroundColor: const Color.fromARGB(255, 249, 249, 249),
-        body: Consumer<JadwalProvider>(
+        body: 
+        Consumer<JadwalProvider>(
             builder: ((context, jadwalprovider, child) {
           final loadJadwalProvider = jadwalprovider.jadwalPoli;
           if (loadJadwalProvider == null || loadJadwalProvider.isEmpty) {
             return Center(child: CircularProgressIndicator());
           } else {
-            return SingleChildScrollView(
+            return 
+            SingleChildScrollView(
               child: Container(
                 child: Column(children: [
                   Container(
@@ -120,7 +124,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                 radioButtonValue: (value) {
                                   _char = "";
                                   loadJadwal.getJadwalPolidata(
-                                      "Poli Umum", value);
+                                      getNamaPoli, value);
                                 },
                                 unSelectedColor:
                                     const Color.fromARGB(255, 223, 223, 223),
