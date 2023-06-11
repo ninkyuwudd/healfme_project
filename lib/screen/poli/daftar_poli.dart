@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/ringkasan.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
   
   @override
   Widget build(BuildContext context) {
+    var loaduser = Provider.of<UserProvider>(context);
     var loadbpjs = Provider.of<Getfoto>(context).imageBpjs;
     var loadktp = Provider.of<Getfoto>(context).imageKtp;
     return Scaffold(
@@ -33,7 +35,7 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
           margin: EdgeInsets.all(15),
           child: Column(
             children: [
-              Text("Pendaftaran Poli Umum",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              Text("Pendaftaran Poli",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               BtnTakeFoto(judul: "Bpjs",),
               BtnTakeFoto(judul: "Ktp",),
               
@@ -49,6 +51,7 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
                     content: Text("Data yang telah diinput kan tidak bisa diubah lagi"),
                     actions: [
                       ElevatedButton(onPressed: (){
+                        loaduser.changeDaftarStatus(true);
                         Navigator.pushReplacementNamed(context, Ringkasan.routename);
                       }, child: Text("Ya")),
                       ElevatedButton(onPressed: (){

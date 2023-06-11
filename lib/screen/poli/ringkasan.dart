@@ -301,7 +301,7 @@ class _RingkasanState extends State<Ringkasan> {
                         ),
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, FormPendaftaran.routename);
+                              context, BottomNavigationBarPage.routename);
                           // Navigator.pop(context);
                         },
                         child: const Text(

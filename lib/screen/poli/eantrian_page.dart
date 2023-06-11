@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+import '../../provider/user_repo.dart';
 
 class EAntrian extends StatelessWidget {
   const EAntrian({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var getuser = Provider.of<UserProvider>(context);
+    var dataUser = getuser.dataPribadiUser;
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.black,
-        ),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Image.asset(
@@ -22,7 +23,19 @@ class EAntrian extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
+      body:getuser.daftar == false?Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Belum ada jadwal !",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: const Color.fromARGB(255, 233, 30, 182)),),
+            SizedBox(height: 20,),
+            Image(image: AssetImage("images/nojadwal.png"),width: 200,)
+          ],
+        ),),
+      ) :Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,14 +98,24 @@ class EAntrian extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset(
-                            'images/qr_code.png',
-                            width: 150,
-                            height: 150,
-                          ), // Ganti dengan gambar QR code sesuai kebutuhan Anda
-                        ),
+                        QrImageView(
+                                data: 
+                                
+                                '''
+        Nama        : ${dataUser[0]}
+        Nik         : ${dataUser[1]}
+        Alamat      : ${dataUser[2]}
+        Gender      : ${dataUser[4]} 
+        Usia        : ${dataUser[3]}
+        Penjamin    : ${dataUser[5]}
+        no penjamin : ${dataUser[6]}
+                                ''',
+                                version: QrVersions.auto,
+                                size: 150,
+                                gapless: false,
+                              ),
+                            
+                         
                       ],
                     ),
                   ),

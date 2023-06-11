@@ -11,6 +11,13 @@ class UserProvider extends ChangeNotifier {
 
   List dataPribadiUser = [];
 
+  bool daftar = false;
+
+  changeDaftarStatus(bool status){
+    daftar = status;
+    notifyListeners();
+  }
+
   getDataPribadiUser(List data){
     dataPribadiUser = data;
     notifyListeners();
