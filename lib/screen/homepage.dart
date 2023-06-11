@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:healthproject/screen/apotik_list_page.dart';
-import 'package:healthproject/screen/apotik_maps_page.dart';
-import 'package:healthproject/screen/berita_page.dart';
 import 'package:healthproject/screen/daftar_poli.dart';
 import 'package:healthproject/screen/jadwal.dart';
 import 'package:healthproject/screen/pendaftaran.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
+
+import 'apotek/apotik_list_page.dart';
+import 'berita/berita_page.dart';
 
 class Homepage extends StatefulWidget {
   static const routename = "/homepage";

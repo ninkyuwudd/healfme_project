@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/berita_provider.dart';
+import '../../provider/berita_provider.dart';
+
+
 
 
 
