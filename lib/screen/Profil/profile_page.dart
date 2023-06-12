@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/Profil/edit_profil.dart';
+import 'package:healthproject/screen/login_page.dart';
 import 'package:provider/provider.dart';
 
 import 'about.dart';
@@ -173,6 +174,7 @@ class ProfilePage extends StatelessWidget {
             // Tombol "Logout"
                   TextButton(
                     onPressed: () {
+                      Navigator.pushNamed(context, LoginPage.routename);
                       // Aksi yang akan dilakukan ketika tombol "Logout" ditekan
                     },
                     style: ButtonStyle(

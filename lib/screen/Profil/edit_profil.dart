@@ -85,6 +85,7 @@ class _EditProfilState extends State<EditProfil> {
   Widget build(BuildContext context) {
     var loaduser = Provider.of<UserProvider>(context,listen: false);
       var getuser = loaduser.getUserData;
+  
       final imgcontroller = Provider.of<PilihUploadfile>(context);
 
           if (imgcontroller.pickfile != null) {
@@ -227,6 +228,7 @@ imgcontroller.pickfile == null
                                       "password": pass.text,
                                       "gambar" : imageurl
                             });
+                            loaduser.insertDataSekarang([nama.text,username.text,email.text,gender,phone.text,pass.text,getuser[6],imageurl]);
                             // Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
                             print("masih kosong");

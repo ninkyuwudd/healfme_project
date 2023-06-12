@@ -4,32 +4,29 @@ import 'package:provider/provider.dart';
 import '../../provider/jadwalPoli_provider.dart';
 
 class ListJawalCard extends StatefulWidget {
-   String char;
-  String hari;
-  ListJawalCard({super.key, required this.char, required this.hari});
+  const ListJawalCard({super.key});
 
   @override
   State<ListJawalCard> createState() => _ListJawalCardState();
 }
 
 class _ListJawalCardState extends State<ListJawalCard> {
-  // String _char = "";
-  // String hari = "";
+  String _char = "";
+  String hari = "";
 
   bool cirular = true;
-  bool content = true;
+  bool content = false;
 
   @override
   void initState() {
     super.initState();
-
+    loadingdata();
   }
 
   loadingdata()async{
-    await Future.delayed(Duration(seconds:1));
+    await Future.delayed(Duration(seconds: 2));
     setState(() {
-          cirular = false;
-    content = true;
+      
     });
 
   }
@@ -43,12 +40,12 @@ class _ListJawalCardState extends State<ListJawalCard> {
       } else {
         return Column(
           children: [
-            // Visibility(
-            //   visible:  cirular,
-            //   child: Container(child: CircularProgressIndicator(
+            Visibility(
+              visible:  cirular,
+              child: Container(child: CircularProgressIndicator(
                 
-            //   ),),
-            // ),
+              ),),
+            ),
             Visibility(
               visible: content,
               child: Container(
@@ -90,11 +87,11 @@ class _ListJawalCardState extends State<ListJawalCard> {
                                 trailing: Icon(Icons.arrow_right),
                                 leading: Radio(
                                   value: getdata.waktu,
-                                  groupValue: widget.char,
+                                  groupValue: _char,
                                   onChanged: (value) {
                                     setState(() {
-                                      widget.hari = getdata.hari;
-                                      widget.char = value as String;
+                                      hari = getdata.hari;
+                                      _char = value as String;
                                     });
                                   },
                                 ),
