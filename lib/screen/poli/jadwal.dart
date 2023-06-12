@@ -98,7 +98,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   "Pilih Jadwal",
                   style: TextStyle(
                       color: Color.fromARGB(255, 65, 65, 65),
-                      fontSize: 20,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500),
                 ),
               ),
@@ -122,6 +122,11 @@ class _JadwalPoliState extends State<JadwalPoli> {
                     child: Row(
                       children: [
                         CustomRadioButton(
+                            elevation: 0,
+                            absoluteZeroSpacing: true,
+                            margin: EdgeInsets.only(left: 10),
+                            defaultSelected: "Senin",
+                            enableShape: true,
                             buttonLables: [
                               "Senin",
                               "Selasa",
@@ -154,12 +159,20 @@ class _JadwalPoliState extends State<JadwalPoli> {
               SizedBox(
                 height: 20,
               ),
-              Visibility(visible: cirular, child: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                child: Center(child: CircularProgressIndicator()))),
               Visibility(
-                  visible: nodatacontent,
+                  visible: cirular,
                   child: Container(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Center(child: CircularProgressIndicator()))),
+
+              Visibility(
+                visible: content,
+                child: Consumer<JadwalProvider>(
+                    builder: ((context, jadwalprovider, child) {
+                  final loadJadwalProvider = jadwalprovider.jadwalPoli;
+                  if (loadJadwalProvider == null ||
+                      loadJadwalProvider.isEmpty) {
+                    return Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 2,
                     child: Center(
@@ -184,28 +197,15 @@ class _JadwalPoliState extends State<JadwalPoli> {
                         ],
                       ),
                     ),
-                  )),
-              Visibility(
-                visible: content,
-                child: Consumer<JadwalProvider>(
-                    builder: ((context, jadwalprovider, child) {
-                  final loadJadwalProvider = jadwalprovider.jadwalPoli;
-                  if (loadJadwalProvider == null || loadJadwalProvider.isEmpty) {
-                    return Center(child: CircularProgressIndicator());
+                  );
                   } else {
                     return Column(
                       children: [
-                        // Visibility(
-                        //   visible:  cirular,
-                        //   child: Container(child: CircularProgressIndicator(
-        
-                        //   ),),
-                        // ),
                         Visibility(
                           visible: content,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 2 ,
+                            height: MediaQuery.of(context).size.height / 2,
                             child: Column(
                               children: [
                                 Text(
@@ -220,18 +220,23 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                     itemBuilder: (context, idx) {
                                       var getdata =
                                           loadJadwalProvider[0].jadwalPoli[idx];
-        
+
                                       return GestureDetector(
                                         onTap: () {
-                                          print(getdata.hari);
-                                          print(getdata.waktu);
-                                          print("oke");
+                                          // print(getdata.hari);
+                                          // print(getdata.waktu);
+                                          // print("oke");
+                                          setState(() {
+                                            _char = getdata.waktu;
+                                          });
+                                          
                                         },
                                         child: Container(
                                           margin: EdgeInsets.all(15),
                                           padding: EdgeInsets.only(
                                               left: 20, right: 20),
                                           decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(15),
                                               color: Colors.white,
                                               boxShadow: [
                                                 BoxShadow(
@@ -249,6 +254,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   hari = getdata.hari;
+                                                  print(value);
                                                   _char = value as String;
                                                 });
                                               },
@@ -268,7 +274,6 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   }
                 })),
               ),
-              
               Container(
                 margin: EdgeInsets.only(bottom: 20),
                 width: 340,
