@@ -29,6 +29,8 @@ class _HomepageState extends State<Homepage> {
 
     // final getdata = Provider.of<UserProvider>(context);
     // final loadata
+    var loaduser = Provider.of<UserProvider>(context);
+    var getuser = loaduser.getUserData;
 
     return SafeArea(
       child: Scaffold(
@@ -50,7 +52,7 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 40,
                 ),
-                ProfileCardHome(name: "Reihan Wudd hibatullah"),
+                ProfileCardHome(name: getuser[0]),
                 SizedBox(
                   height: 20,
                 ),

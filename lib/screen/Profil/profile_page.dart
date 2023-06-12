@@ -11,7 +11,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var loaduser = Provider.of<UserProvider>(context);
-    var getuser = loaduser.akun;
+    var getuser = loaduser.getUserData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -78,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                           height: 40,
                         ),
                         Text(
-                          'Amanda Vania',
+                          getuser[0],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -122,85 +122,97 @@ class ProfilePage extends StatelessWidget {
             SizedBox(height: 20), // Jarak antara card dan tombol
 
 // Tombol "About"
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, about.routeName);
-              },
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(
-                  Colors.transparent,
-                ),
-                foregroundColor: MaterialStateProperty.all(
-                  Colors.black,
-                ),
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(
-                    vertical: 8, // Ubah nilai sesuai kebutuhan Anda
-                    horizontal: 12, // Ubah nilai sesuai kebutuhan Anda
-                  ),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        20), // Ubah radius sesuai kebutuhan Anda
-                    side: BorderSide(
-                      color: Color.fromARGB(255, 223, 223, 223),
-                      width: 1,
+            Container(
+              margin: EdgeInsets.only(top: 0,left: 20,right: 20,bottom: 10),
+              child: Column(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, about.routeName);
+                    },
+                    style: ButtonStyle(
+                      // overlayColor: MaterialStateProperty.all(
+                      //   Colors.transparent,
+                      // ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Colors.black,
+                      ),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(
+                          vertical: 8, // Ubah nilai sesuai kebutuhan Anda
+                          horizontal: 12, // Ubah nilai sesuai kebutuhan Anda
+                        ),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              20), // Ubah radius sesuai kebutuhan Anda
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 223, 223, 223),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.info_outline_rounded,
+                          color: Colors.purple, // Mengubah warna ikon menjadi ungu
+                        ),
+                        SizedBox(width: 20,),
+                        Text('Tentang Kami'),
+                        Spacer(),
+                        Icon(Icons.arrow_forward_ios),
+                      ],
                     ),
                   ),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.info_outline_rounded,
-                    color: Colors.purple, // Mengubah warna ikon menjadi ungu
-                  ),
-                  Text('Tentang Kami'),
-                  Icon(Icons.arrow_forward),
-                ],
-              ),
-            ),
-
-// Tombol "Logout"
-            TextButton(
-              onPressed: () {
-                // Aksi yang akan dilakukan ketika tombol "Logout" ditekan
-              },
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(
-                  Colors.transparent,
-                ),
-                foregroundColor: MaterialStateProperty.all(
-                  Colors.black,
-                ),
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(
-                    vertical: 8, // Ubah nilai sesuai kebutuhan Anda
-                    horizontal: 12, // Ubah nilai sesuai kebutuhan Anda
-                  ),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        20), // Ubah radius sesuai kebutuhan Anda
-                    side: BorderSide(
-                      color: Color.fromARGB(255, 223, 223, 223),
-                      width: 1,
+                  SizedBox(height: 10,),
+            
+            // Tombol "Logout"
+                  TextButton(
+                    onPressed: () {
+                      // Aksi yang akan dilakukan ketika tombol "Logout" ditekan
+                    },
+                    style: ButtonStyle(
+                      
+                      overlayColor: MaterialStateProperty.all(
+                        Colors.transparent,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Colors.black,
+                      ),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(
+                          vertical: 8, // Ubah nilai sesuai kebutuhan Anda
+                          horizontal: 12, // Ubah nilai sesuai kebutuhan Anda
+                        ),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              20), // Ubah radius sesuai kebutuhan Anda
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 223, 223, 223),
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.logout_rounded,
+                          color: Colors.purple, // Mengubah warna ikon menjadi ungu
+                        ), // Icon di sebelah kiri
+                        Text('Logout'),
+                        Spacer(),
+                        Icon(Icons.arrow_forward), // Icon di sebelah kanan
+                      ],
                     ),
                   ),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.logout_rounded,
-                    color: Colors.purple, // Mengubah warna ikon menjadi ungu
-                  ), // Icon di sebelah kiri
-                  Text('Logout'),
-                  Icon(Icons.arrow_forward), // Icon di sebelah kanan
                 ],
               ),
             ),
