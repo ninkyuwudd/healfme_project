@@ -34,32 +34,34 @@ class _LoginPageState extends State<LoginPage> {
   List<UsersAkun> usersitem = [];
   @override
   void initState() {
-    fetchRecord();
+    // fetchRecord();
+
     super.initState();
+    Provider.of<UserProvider>(context,listen: false).fethcdatauser();
   }
 
-  fetchRecord() async {
-    var records = await FirebaseFirestore.instance.collection('users').get();
-    maprecord(records);
-  }
+  // fetchRecord() async {
+  //   var records = await FirebaseFirestore.instance.collection('users').get();
+  //   maprecord(records);
+  // }
 
-  maprecord(QuerySnapshot<Map<String, dynamic>> records) {
-    var _list = records.docs
-        .map((item) => UsersAkun(
-            // id: item["id"],
-            nama: item['nama'],
-            username: item['username'],
-            email: item['email'],
-            gender: item["gender"],
-            phone: item["phone"],
-            password: item["password"],
-            gambar: item["gambar"]
-            ))
-        .toList();
-    setState(() {
-      usersitem = _list;
-    });
-  }
+  // maprecord(QuerySnapshot<Map<String, dynamic>> records) {
+  //   var _list = records.docs
+  //       .map((item) => UsersAkun(
+  //           id: item["id"],
+  //           nama: item['nama'],
+  //           username: item['username'],
+  //           email: item['email'],
+  //           gender: item["gender"],
+  //           phone: item["phone"],
+  //           password: item["password"],
+  //           gambar: item["gambar"]
+  //           ))
+  //       .toList();
+  //   setState(() {
+  //     usersitem = _list;
+  //   });
+  // }
 
   var i = 0;
 
@@ -70,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var getuser = Provider.of<UserProvider>(context);
+    var loaduser = getuser.akun;
   
     return SafeArea(
       child: Container(
@@ -190,20 +193,23 @@ class _LoginPageState extends State<LoginPage> {
                               } else {
                                 passcheck = false;
                               }
-
+                              print("dicilck");
                               if (password.text.isNotEmpty &
                                   username.text.isNotEmpty) {
-                                for (var i = 0; i < usersitem.length; i++) {
-
-                                  if (username.text == usersitem[i].username &&
-                                      password.text == usersitem[i].password) {
-                                  var singledata = usersitem[i];
+                                for (var i = 0; i <loaduser.length; i++) {
+                                  print(i);
+                                  if (username.text ==loaduser[i].username &&
+                                      password.text ==loaduser[i].password) {
+                                  var singledata =loaduser[i];
+                                  getuser.changeid(singledata.id.toString());
+                                  print(getuser.userid);
                                   getuser.insertDataSekarang([singledata.nama,singledata.username,singledata.email,singledata.gender,singledata.phone,singledata.password,singledata.id,singledata.gambar]);
                                   Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
                                     notallowedalert = false;
                                     print("berhasil");
                                     break;
                                   } else {
+                                    print("gagal");
                                     notallowedalert = true;
                                   }
                                 }

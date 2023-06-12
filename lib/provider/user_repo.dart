@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import '../model/user_model.dart';
@@ -13,6 +14,8 @@ class UserProvider extends ChangeNotifier {
   List dataPribadiUser = [];
 
   bool daftar = false;
+
+  var userid = "";
 
   insertDataSekarang(List data){
     getUserData = data;
@@ -37,6 +40,7 @@ class UserProvider extends ChangeNotifier {
         
     _usrakun = usrdataloc.docs
         .map((doc) => UsersAkun(
+          id: doc.id,
             nama: doc['nama'],
             username: doc.data()['username'],
             email: doc.data()['email'],
@@ -48,4 +52,20 @@ class UserProvider extends ChangeNotifier {
         .toList();
         notifyListeners();
   }
+
+  changeid(String id){
+    userid = id;
+    notifyListeners();
+  }
+
+
+  void getiduser() async {
+    DocumentReference doc_ref= await FirebaseFirestore.instance.collection('users').doc();
+
+    DocumentSnapshot docSnap = await doc_ref.get();
+    userid = docSnap.reference.id;
+    notifyListeners();
+  }
+
+
 }

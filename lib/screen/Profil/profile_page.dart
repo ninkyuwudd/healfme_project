@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/Profil/edit_profil.dart';
+import 'package:provider/provider.dart';
 
 import 'about.dart';
 
@@ -8,6 +10,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var loaduser = Provider.of<UserProvider>(context);
+    var getuser = loaduser.akun;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -55,10 +59,17 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    CircleAvatar(
-                      backgroundImage: AssetImage('images/foto_profil.png'),
-                      radius: 50,
-                    ),
+                    Container(
+                          width: 130,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image:loaduser.getUserData[7] == null ?DecorationImage(image: AssetImage("images/empty.jpg")) :DecorationImage(
+                                image: NetworkImage(
+                                    loaduser.getUserData[7].toString()),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
                     SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
