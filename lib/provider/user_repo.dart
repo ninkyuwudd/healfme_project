@@ -10,8 +10,9 @@ class UserProvider extends ChangeNotifier {
 
   List getUserData = [];
 
-
   List dataPribadiUser = [];
+
+  List ListDataPasien = [];
 
   bool daftar = false;
 
@@ -30,6 +31,11 @@ class UserProvider extends ChangeNotifier {
 
   getDataPribadiUser(List data){
     dataPribadiUser = data;
+    notifyListeners();
+  }
+
+  addDataPasien(){
+    ListDataPasien.add(dataPribadiUser) ;
     notifyListeners();
   }
 

@@ -27,13 +27,7 @@ class _RingkasanState extends State<Ringkasan> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
-              leading: BackButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, BottomNavigationBarPage.routename);
-                },
-                color: Colors.black,
-              ),
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: Image.asset(
@@ -232,7 +226,7 @@ class _RingkasanState extends State<Ringkasan> {
                             Container(
                                 margin: EdgeInsets.fromLTRB(132, 0, 0, 0),
                                 child: Text(
-                                  "A32",
+                                  getjadwal.pilihanJadwal[2],
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 254, 36, 120),
                                       fontSize: 35,
@@ -253,37 +247,6 @@ class _RingkasanState extends State<Ringkasan> {
                     ),
                     const SizedBox(
                       height: 10,
-                    ),
-                    SizedBox(
-                      width: 320,
-                      height: 35,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 254, 188, 246),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        onPressed: () {
-                          // print(DateFormat.d().format(DateTime.now()));
-                          // if(DateTime.now().weekday + 7 == 13){
-
-                          //   var x = int.parse(DateFormat.d().format(DateTime.now())) - 5;
-                          //   print(x);
-                          // }
-                          // print("nope");
-                          // Navigator.pushNamed(
-                          //     context, FormPendaftaran.routename);
-                        },
-                        child: const Text(
-                          "Selesai Check-in",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -312,7 +275,8 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20,)
                   ]),
             ))));
   }

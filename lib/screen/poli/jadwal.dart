@@ -296,9 +296,31 @@ class _JadwalPoliState extends State<JadwalPoli> {
                     } else {
                       print("jam : $_char");
                       print("hari : $hari");
-                      // print(DateFormat.E().format(DateTime.now()));
-                      List jadwalPilihan = [_char, hari];
+                      print(DateTime.now().millisecond);
+                      String abjad = '';
+                      setState(() {
+                      if(getNamaPoli == "Poli Umum"){
+                        abjad = "U";
+                      }else if(getNamaPoli == "Poli Gigi"){
+                        abjad = "G";
+                      }else if(getNamaPoli == "Poli Lansia"){
+                        abjad = "L";
+                      }else if(getNamaPoli == "Poli Gizi"){
+                        abjad = "Z";
+                      }else if(getNamaPoli == "Poli Sanitasi"){
+                        abjad = "S";
+                      }else if(getNamaPoli == "Poli Kia"){
+                        abjad = "K";
+                      }else{
+                        print("Salah");
+                      }
+                        
+                      });
+                      
+                      String urutan = "$abjad${DateTime.now().millisecond}";
+                      List jadwalPilihan = [_char, hari,urutan];
                       loadJadwal.getUserJadwal(jadwalPilihan);
+                      loadJadwal.addDataUserJadwal();
                       Navigator.pushNamed(context, FormPendaftaran.routename);
                     }
                   },

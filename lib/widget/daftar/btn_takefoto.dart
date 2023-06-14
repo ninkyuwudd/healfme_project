@@ -21,7 +21,9 @@ class _BtnTakeFotoState extends State<BtnTakeFoto> {
   Widget build(BuildContext context) {
     File? imgpath;
     var getimage = Provider.of<Getfoto>(context, listen: false);
+    
     File? path = widget.judul == "Bpjs" ? getimage.imageBpjs : getimage.imageKtp ;
+
     return Container(
       child: Column(
         children: [
@@ -57,7 +59,6 @@ class _BtnTakeFotoState extends State<BtnTakeFoto> {
                         }else if(widget.judul == "Ktp"){
                           await getimage.getfromcameraktp();
                         }
-                        
                         setState(() {
                           imgpath = path;
                         });

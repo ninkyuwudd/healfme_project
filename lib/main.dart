@@ -26,6 +26,7 @@ import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:healthproject/screen/register_page.dart';
+import 'package:healthproject/screen/testing/maps_poly_test.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: mcgpalette0,
         ),
         home: LoginPage(),
+        // home:  MapsPolyTest(),
 
         routes: {
           Homepage.routename: (context) => Homepage(),

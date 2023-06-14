@@ -63,7 +63,7 @@ class _ApotekListState extends State<ApotekList> {
       appBar: AppBar(
         title: Text("apotek list"),
       ),
-      body: Container(
+      body:curlat == null || curlong == null ? Center(child: CircularProgressIndicator(),) :Container(
               height: MediaQuery.of(context).size.height,
               child: Consumer<ApotekProvider>(
                   builder: (context, apotekprovider, _) {

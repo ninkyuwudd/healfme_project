@@ -9,9 +9,18 @@ import 'package:flutter/material.dart';
 class PilihUploadfile extends ChangeNotifier {
 
   PlatformFile? pickfile;
+  
+
 
   Future uploadfile() async {
     final path = 'file/${pickfile!.name}';
+    final file = File(pickfile!.path!);
+    final ref = FirebaseStorage.instance.ref().child(path);
+    ref.putFile(file);
+  }
+
+    Future uploadfilebyUser(String name) async {
+    final path = 'file/$name/${pickfile!.name}';
     final file = File(pickfile!.path!);
     final ref = FirebaseStorage.instance.ref().child(path);
     ref.putFile(file);

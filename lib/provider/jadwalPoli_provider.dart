@@ -15,9 +15,15 @@ class JadwalProvider with ChangeNotifier{
 
   List pilihanJadwal = [];
 
+  List daftarOrderJadwal = [];
 
   getUserJadwal(List userjadwal){
     pilihanJadwal = userjadwal;
+    notifyListeners();
+  }
+
+  addDataUserJadwal(){
+    daftarOrderJadwal.add(pilihanJadwal);
     notifyListeners();
   }
 

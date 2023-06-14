@@ -174,6 +174,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                           if (_formState.currentState!.validate()) {
                             List dataResult = [nama.text,usia.text,nik.text,alamat.text,gender,penjamin,nopenjamin.text];
                             getuser.getDataPribadiUser(dataResult);
+                            getuser.addDataPasien();
                             Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
                             print("masih kosong");

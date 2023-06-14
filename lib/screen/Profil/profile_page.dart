@@ -85,12 +85,12 @@ class ProfilePage extends StatelessWidget {
                             fontSize: 18,
                           ),
                         ),
-                        Text(
-                          '20 Tahun',
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
+                        // Text(
+                        //   '20 Tahun',
+                        //   style: TextStyle(
+                        //     fontSize: 12,
+                        //   ),
+                        // ),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.pushNamed(context, EditProfil.routename);

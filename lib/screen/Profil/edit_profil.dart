@@ -88,7 +88,7 @@ class _EditProfilState extends State<EditProfil> {
   
       final imgcontroller = Provider.of<PilihUploadfile>(context);
 
-          if (imgcontroller.pickfile != null) {
+    if (imgcontroller.pickfile != null) {
       getImageurl(imgcontroller.pickfile!.name);
     } else {
       print("data masih kosong");
