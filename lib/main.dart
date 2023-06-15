@@ -26,6 +26,7 @@ import 'package:healthproject/screen/poli/jadwal.dart';
 import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:healthproject/screen/poli/scan_daftar.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/testing/maps_poly_test.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +65,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: mcgpalette0,
         ),
         home: LoginPage(),
-        // home:  MapsPolyTest(),
+        // home:  QrScanPage(),
 
         routes: {
           Homepage.routename: (context) => Homepage(),
@@ -81,7 +82,8 @@ class MyApp extends StatelessWidget {
           Ringkasan.routename: (context) => Ringkasan(),
           about.routeName : (context) => about(),
           EditProfil.routename :(context) =>  EditProfil(),
-          HomepageAdmin.routename :(context) => HomepageAdmin()
+          HomepageAdmin.routename :(context) => HomepageAdmin(),
+          QrScanPage.routename : (context) => QrScanPage()
         },
       ),
     );

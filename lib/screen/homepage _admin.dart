@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/user_repo.dart';
+import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/poli/jadwal.dart';
+import 'package:healthproject/screen/poli/scan_daftar.dart';
 import 'package:provider/provider.dart';
 import '../widget/homepage/icon_grid.dart';
 import '../widget/homepage/profile_card.dart';
@@ -117,7 +119,7 @@ class _HomepageAdminState extends State<HomepageAdmin> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, ApotekList.routename);
+                    Navigator.pushNamed(context, QrScanPage.routename);
                   },
                   child: Container(
                     height: 110,
@@ -172,7 +174,9 @@ class _HomepageAdminState extends State<HomepageAdmin> {
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
                     
-                    onPressed: (){}, child: Text("LogOut")))
+                    onPressed: (){
+                      Navigator.pushReplacementNamed(context, LoginPage.routename);
+                    }, child: Text("LogOut")))
               ],
             ),
           ),

@@ -187,13 +187,13 @@ class _RingkasanState extends State<Ringkasan> {
                                 data: 
                                 
                                 '''
-        Nama        : ${dataUser[0]}
-        Nik         : ${dataUser[1]}
-        Alamat      : ${dataUser[2]}
-        Gender      : ${dataUser[4]} 
-        Usia        : ${dataUser[3]}
-        Penjamin    : ${dataUser[5]}
-        no penjamin : ${dataUser[6]}
+${dataUser[0]}
+${dataUser[1]}
+${dataUser[2]}
+${dataUser[4]} 
+${dataUser[3]}
+${dataUser[5]}
+${dataUser[6]}
                                 ''',
                                 version: QrVersions.auto,
                                 size: 150,

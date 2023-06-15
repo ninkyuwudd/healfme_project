@@ -217,13 +217,13 @@ class EAntrian extends StatelessWidget {
                                     ),
                                     QrImageView(
                                       data: '''
-Nama        : ${dataListPasien[0]}
-Nik         : ${dataListPasien[1]}
-Alamat      : ${dataListPasien[2]}
-Gender      : ${dataListPasien[4]} 
-Usia        : ${dataListPasien[3]}
-Penjamin    : ${dataListPasien[5]}
-no penjamin : ${dataListPasien[6]}
+${dataListPasien[0]}
+${dataListPasien[1]}
+${dataListPasien[2]}
+${dataListPasien[4]} 
+${dataListPasien[3]}
+${dataListPasien[5]}
+${dataListPasien[6]}
                                     ''',
                                       version: QrVersions.auto,
                                       size: 150,
