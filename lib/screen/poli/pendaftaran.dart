@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// ignore: unused_import
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/daftar_poli.dart';
+import 'package:healthproject/widget/daftar/form_common.dart';
+import 'package:healthproject/widget/daftar/form_number.dart';
+import 'package:provider/provider.dart';
 
-// void main() async {
-//   runApp(const FormPendaftaran());
-// }
+
 
 class FormPendaftaran extends StatefulWidget {
   static const routename = "/FormPendaftaran";
@@ -18,17 +18,18 @@ class FormPendaftaran extends StatefulWidget {
 
 class _FormPendaftaranState extends State<FormPendaftaran> {
   final _formState = GlobalKey<FormState>();
-  final textController = TextEditingController();
-  final textController2 = TextEditingController();
-  final textController3 = TextEditingController();
-  final textController4 = TextEditingController();
-  final textController5 = TextEditingController();
+  final nama = TextEditingController();
+  final usia = TextEditingController();
+  final nik = TextEditingController();
+  final alamat = TextEditingController();
+  final nopenjamin = TextEditingController();
 
-  String? selectedValue; //untuk dropdown
-  String? selectedValue2; //untuk dropdown
+  String? gender; //untuk dropdown
+  String? penjamin; //untuk dropdown
 
   @override
   Widget build(BuildContext context) {
+    var getuser = Provider.of<UserProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -67,131 +68,19 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                 Form(
                   key: _formState,
                   child: Column(children: [
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
-                      child: TextFormField(
-                        autofocus: true,
-                        controller: textController,
-                        validator: (value) {
-                          if (value == '') return "Text tidak boleh kosong";
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 240, 144, 182))),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 240, 144, 182))),
-                          label: Text('Nama Lengkap'),
-                          labelStyle: TextStyle(
-                              color: Color.fromARGB(255, 254, 36, 120)),
-                          hintText: ("Amanda Vania"),
-                        ),
-                      ),
-                    ),
 
-                    //Form Kedua
 
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: TextFormField(
-                          autofocus: true,
-                          controller: textController2,
-                          validator: (value) {
-                            if (value == '') return "Text tidak boleh kosong";
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            label: Text('Usia'),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 254, 36, 120)),
-                            hintText: ("20"),
-                          ),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ]),
-                    ),
-
-                    //Form ketiga
-
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: TextFormField(
-                          autofocus: true,
-                          controller: textController3,
-                          validator: (value) {
-                            if (value == '') return "Text tidak boleh kosong";
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            label: Text('NIK'),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 254, 36, 120)),
-                            hintText: ("35090943759"),
-                          ),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ]),
-                    ),
-
-                    //Form Keempat
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: TextFormField(
-                        autofocus: true,
-                        controller: textController4,
-                        validator: (value) {
-                          if (value == '') return "Text tidak boleh kosong";
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 240, 144, 182))),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 240, 144, 182))),
-                          label: Text('Alamat'),
-                          labelStyle: TextStyle(
-                              color: Color.fromARGB(255, 254, 36, 120)),
-                          hintText: ("Jln.Tutwuri Handayani"),
-                        ),
-                      ),
-                    ),
+                    FormCommon(value: nama, title: "Nama Lengkap", hover: "masukkan nama..."),
+                    FormNumber(value: usia, title: "Usia", hover: "masukkan usia..."),
+                    FormNumber(value: nik, title: "NIK", hover: "masukkan NIK..."),
+                    FormCommon(value: alamat, title: "Alamat", hover: "masukkan alamat..."),
 
                     //Dropdown 1
                     Container(
                       margin:
                           const EdgeInsets.only(top: 15, left: 20, right: 20),
                       child: DropdownButtonFormField(
-                        value: selectedValue,
+                        value: gender,
                         items: ["Laki-Laki", "Perempuan"]
                             .map((e) => DropdownMenuItem(
                                   child: Text(e.toString()),
@@ -200,7 +89,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                             .toList(),
                         onChanged: (val) {
                           setState(() {
-                            selectedValue = val as String;
+                            gender = val as String;
                           });
                         },
                         icon: const Icon(
@@ -229,7 +118,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                       margin:
                           const EdgeInsets.only(top: 15, left: 20, right: 20),
                       child: DropdownButtonFormField(
-                        value: selectedValue2,
+                        value: penjamin,
                         items: ["BPJS", "Umum"]
                             .map((e) => DropdownMenuItem(
                                   child: Text(e.toString()),
@@ -238,7 +127,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                             .toList(),
                         onChanged: (vall) {
                           setState(() {
-                            selectedValue2 = vall as String;
+                            penjamin = vall as String;
                           });
                         },
                         icon: const Icon(
@@ -263,42 +152,15 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                     ),
 
                     //Form Kelima
-
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 15, left: 20, right: 20),
-                      child: TextFormField(
-                          autofocus: true,
-                          controller: textController5,
-                          validator: (value) {
-                            if (value == '') return "Text tidak boleh kosong";
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 240, 144, 182))),
-                            label: Text('Nomor Penjamin'),
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 254, 36, 120)),
-                            hintText: ("002321588456"),
-                          ),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ]),
-                    ),
+                    FormCommon(value: nopenjamin, title: "Nomor Penjamin", hover: "masukkan nomor penjamin..."),
+                   
 
                     const SizedBox(
-                      height: 70,
+                      height: 50,
                     ),
-                    SizedBox(
-                      width: 340,
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      width: MediaQuery.of(context).size.width,
                       height: 45,
                       child: TextButton(
                         style: TextButton.styleFrom(
@@ -310,10 +172,12 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                         ),
                         onPressed: () {
                           if (_formState.currentState!.validate()) {
-                            
+                            List dataResult = [nama.text,usia.text,nik.text,alamat.text,gender,penjamin,nopenjamin.text];
+                            getuser.getDataPribadiUser(dataResult);
+                            getuser.addDataPasien();
                             Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
-                            
+                            print("masih kosong");
                           }
                         },
                         child: const Text(

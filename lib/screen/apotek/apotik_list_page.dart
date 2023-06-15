@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/apotik_provider.dart';
 import 'package:healthproject/provider/geolocator_provider.dart';
@@ -55,6 +55,7 @@ class _ApotekListState extends State<ApotekList> {
 
   @override
   Widget build(BuildContext context) {
+
     var loadcurloc = Provider.of<CurrentLocProvider>(context);
     var curlat = loadcurloc.pslat;
     var curlong = loadcurloc.pslong;
@@ -62,27 +63,43 @@ class _ApotekListState extends State<ApotekList> {
       appBar: AppBar(
         title: Text("apotek list"),
       ),
-      body: Container(
+      body:curlat == null || curlong == null ? Center(child: CircularProgressIndicator(),) :Container(
               height: MediaQuery.of(context).size.height,
               child: Consumer<ApotekProvider>(
                   builder: (context, apotekprovider, _) {
+
                     print("lat :$curlat,long : $curlong");
+
                 final showdata = apotekprovider.apotek;
 
-                showdata.sort((a, b) {
+                  showdata.sort((a, b) {
                   double jarakA =
-                      hitungjarak(113.7164, a.lat,-8.1651, a.long);
+                      hitungjarak(curlong, a.lat,curlat, a.long);
+
                   double jarakB =
-                      hitungjarak(113.7164, b.lat,-8.1651, b.long);
+                      hitungjarak(curlong, b.lat,curlat, b.long);
+
                   return jarakA.compareTo(jarakB);
+
+                // showdata.sort((a, b) {
+                //   double jarakA =
+                //       hitungjarak(curlat, a.lat,curlong, a.long);
+                //   double jarakB =
+                //       hitungjarak(curlat, b.lat,curlong, b.long);
+                //   return jarakA.compareTo(jarakB);
                 });
                 return Container(
                   child: ListView.builder(
                       itemCount: showdata.length,
                       itemBuilder: (context, index) {
+
                         final idxapotik = showdata[index];
+
                         double jarakterdekat = hitungjarak(113.7164,
                             idxapotik.lat, -8.1651, idxapotik.long);
+
+                        
+
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(
@@ -115,15 +132,7 @@ class _ApotekListState extends State<ApotekList> {
                 );
               }),
             )
-          // : Center(
-          //     child: ElevatedButton(
-          //         onPressed: () {
-          //           setState(() {
-          //             display = true;
-          //           });
-          //         },
-          //         child: Text("load apotek")),
-          //   ),
+
     );
   }
 }

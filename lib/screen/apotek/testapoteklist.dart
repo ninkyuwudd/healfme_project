@@ -97,14 +97,6 @@ class _ApotekListTestState extends State<ApotekListTest> {
                               offset: Offset(1, 2))
                         ]),
                     child: ListTile(
-                      // leading: Text(
-                      //   "${jarakterdekat.toStringAsFixed(1)} km",
-                      //   style: TextStyle(color: Colors.black45),
-                      // ),
-                      // title: Text(
-                      //   idxapotik["nama"],
-                      //   style: TextStyle(color: Colors.black87),
-                      // ),
                       trailing: Image(
                         image: AssetImage("images/maprow.png"),
                         width: 40,

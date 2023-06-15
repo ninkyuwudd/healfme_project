@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:healthproject/model/jadwalpoli_model.dart';
+import 'package:healthproject/provider/jadwalPoli_provider.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/navigationbar.dart';
+import 'package:provider/provider.dart';
 import '../../widget/textringkasan.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:intl/intl.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Ringkasan extends StatefulWidget {
   static const routename = "/Ringkasan";
@@ -14,16 +20,14 @@ class Ringkasan extends StatefulWidget {
 class _RingkasanState extends State<Ringkasan> {
   @override
   Widget build(BuildContext context) {
+    var getuser = Provider.of<UserProvider>(context);
+    var dataUser = getuser.dataPribadiUser;
+    var getjadwal = Provider.of<JadwalProvider>(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
-              leading: BackButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
-                },
-                color: Colors.black,
-              ),
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: Image.asset(
@@ -50,17 +54,6 @@ class _RingkasanState extends State<Ringkasan> {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    // Container(
-                    //   height: MediaQuery.of(context).size.height,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   decoration: BoxDecoration(
-                    //       image: DecorationImage(
-                    //     image: AssetImage('images/bgringkasan.png'),
-                    //   )),
-                    //   child: Column(
-                    //     children: [Text("testing")],
-                    //   ),
-                    // )
                     Stack(
                       children: [
                         Container(
@@ -154,31 +147,31 @@ class _RingkasanState extends State<Ringkasan> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   TextRingkasan(
-                                    isi: "Amanda Vania",
+                                    isi: dataUser[0],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "3509133546546",
+                                    isi: dataUser[1],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "jl. tutwurihandayani",
+                                    isi: dataUser[2],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "Perempuan",
+                                    isi: dataUser[4],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "35 tahun",
+                                    isi: dataUser[3],
                                     isi2: Colors.black,
                                   ),
                                   TextRingkasan(
-                                    isi: "BPJS",
+                                    isi: dataUser[5],
                                     isi2: Color.fromARGB(255, 23, 23, 23),
                                   ),
                                   TextRingkasan(
-                                    isi: "0023611894",
+                                    isi: dataUser[6],
                                     isi2: Color.fromARGB(255, 23, 23, 23),
                                   ),
                                 ],
@@ -187,13 +180,27 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(140, 370, 20, 0),
-                          child: Image.asset(
-                            'images/qr_code.png',
-                            height: 120,
-                            width: 120,
-                          ),
-                        ),
+                          width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.fromLTRB(20, 350, 20, 50),
+                            child: Center(
+                              child: QrImageView(
+                                data: 
+                                
+                                '''
+${dataUser[0]}
+${dataUser[1]}
+${dataUser[2]}
+${dataUser[4]} 
+${dataUser[3]}
+${dataUser[5]}
+${dataUser[6]}
+                                ''',
+                                version: QrVersions.auto,
+                                size: 150,
+                                gapless: false,
+                              ),
+                            )),
+               
                         Container(
                           margin: EdgeInsets.fromLTRB(60, 485, 20, 0),
                           child: Text(
@@ -219,7 +226,7 @@ class _RingkasanState extends State<Ringkasan> {
                             Container(
                                 margin: EdgeInsets.fromLTRB(132, 0, 0, 0),
                                 child: Text(
-                                  "A32",
+                                  getjadwal.pilihanJadwal[2],
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 254, 36, 120),
                                       fontSize: 35,
@@ -228,7 +235,7 @@ class _RingkasanState extends State<Ringkasan> {
                             Container(
                                 margin: EdgeInsets.fromLTRB(132, 0, 0, 0),
                                 child: Text(
-                                  "Minggu, 30 April 2023",
+                                  "${getjadwal.pilihanJadwal[1]}, ${getjadwal.pilihanJadwal[0]}",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 206, 75, 191),
                                       fontSize: 14,
@@ -240,30 +247,6 @@ class _RingkasanState extends State<Ringkasan> {
                     ),
                     const SizedBox(
                       height: 10,
-                    ),
-                    SizedBox(
-                      width: 320,
-                      height: 35,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 254, 188, 246),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, FormPendaftaran.routename);
-                        },
-                        child: const Text(
-                          "Selesai Check-in",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -281,7 +264,8 @@ class _RingkasanState extends State<Ringkasan> {
                         ),
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, FormPendaftaran.routename);
+                              context, BottomNavigationBarPage.routename);
+                          // Navigator.pop(context);
                         },
                         child: const Text(
                           "eAntrian",
@@ -291,7 +275,8 @@ class _RingkasanState extends State<Ringkasan> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20,)
                   ]),
             ))));
   }

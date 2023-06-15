@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/getfoto_provider.dart';
+import 'package:healthproject/provider/pilihfile_controller.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/ringkasan.dart';
+import 'package:healthproject/widget/popup_warning.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../widget/daftar/btn_takefoto.dart';
@@ -17,8 +21,13 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
   
   @override
   Widget build(BuildContext context) {
-    var loadbpjs = Provider.of<Getfoto>(context).imageBpjs;
-    var loadktp = Provider.of<Getfoto>(context).imageKtp;
+    var loadgetfile = Provider.of<PilihUploadfile>(context);
+    var loaduser = Provider.of<UserProvider>(context);
+    var loadgetfoto = Provider.of<Getfoto>(context);
+    var getNameBpjs = loadgetfoto.namebpjs;
+    var getNameKtp = loadgetfoto.namektp;
+    var loadbpjs = loadgetfoto.imageBpjs;
+    var loadktp = loadgetfoto.imageKtp;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -33,7 +42,7 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
           margin: EdgeInsets.all(15),
           child: Column(
             children: [
-              Text("Pendaftaran Poli Umum",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              Text("Pendaftaran Poli",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               BtnTakeFoto(judul: "Bpjs",),
               BtnTakeFoto(judul: "Ktp",),
               
@@ -44,11 +53,21 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
                 onPressed: (){
                   print(loadbpjs);
                   print(loadktp);
-                  showDialog(context: context, builder: (context) => AlertDialog(
+                  if(loadbpjs == null || loadktp == null){
+                    showDialog(context: context, builder: (context){
+                      return PopupWarning(pesan: "Gambar tidak boleh kosong !");
+                    });
+                  }else{
+                    showDialog(context: context, builder: (context) => AlertDialog(
                     title: Text("Apakah data anda sudah benar?"),
                     content: Text("Data yang telah diinput kan tidak bisa diubah lagi"),
                     actions: [
                       ElevatedButton(onPressed: (){
+                     
+                        loadgetfoto.uploadImageToFirebasebpjs(loaduser.getUserData[0].toString(),loadbpjs,getNameBpjs);
+                        loadgetfoto.uploadImageToFirebasebpjs(loaduser.getUserData[0].toString(), loadktp,getNameKtp);
+
+                        loaduser.changeDaftarStatus(true);
                         Navigator.pushReplacementNamed(context, Ringkasan.routename);
                       }, child: Text("Ya")),
                       ElevatedButton(onPressed: (){
@@ -57,6 +76,8 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
                     ],
 
                   ));
+                }
+                  
               }, child: const Text("Kirim"))
             ],
           ),

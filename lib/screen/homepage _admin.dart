@@ -1,27 +1,25 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/user_repo.dart';
-import 'package:healthproject/screen/poli/daftar_poli.dart';
+import 'package:healthproject/screen/login_page.dart';
 import 'package:healthproject/screen/poli/jadwal.dart';
-import 'package:healthproject/screen/poli/pendaftaran.dart';
-import 'package:healthproject/widget/homepage/icon_grid.dart';
-import 'package:healthproject/widget/homepage/profile_card.dart';
+import 'package:healthproject/screen/poli/scan_daftar.dart';
 import 'package:provider/provider.dart';
-
+import '../widget/homepage/icon_grid.dart';
+import '../widget/homepage/profile_card.dart';
 import 'apotek/apotik_list_page.dart';
 import 'berita/berita_page.dart';
 
-class Homepage extends StatefulWidget {
-  static const routename = "/homepage";
+class HomepageAdmin extends StatefulWidget {
+  static const routename = "/homepageAdmin";
   // final int idx;
-  // Homepage({super.key, required this.idx});
+  // HomepageAdmin({super.key, required this.idx});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<HomepageAdmin> createState() => _HomepageAdminState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomepageAdminState extends State<HomepageAdmin> {
 
 
   @override
@@ -57,14 +55,7 @@ class _HomepageState extends State<Homepage> {
                   height: 20,
                 ),
                 Center(
-                  child: Text("PUSKESMAS JEMBER"),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                Text(
-                  "Poli",
-                  style: TextStyle(color: Color.fromARGB(255, 85, 85, 85)),
+                  child: Text("Edit Jadwal Seuai Poli"),
                 ),
                 SizedBox(
                   height: 15,
@@ -122,19 +113,13 @@ class _HomepageState extends State<Homepage> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Fitur",
-                  style: TextStyle(color: Color.fromARGB(255, 85, 85, 85)),
-                ),
+
                 SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, ApotekList.routename);
+                    Navigator.pushNamed(context, QrScanPage.routename);
                   },
                   child: Container(
                     height: 110,
@@ -153,22 +138,22 @@ class _HomepageState extends State<Homepage> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text("Cari "),
+                                  Text("Scan"),
                                   SizedBox(
                                     width: 5,
                                   ),
                                   Text(
-                                    "APOTEK",
+                                    "Qr code",
                                     style: TextStyle(
-                                        fontSize: 32,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
                               Text(
-                                "Terdekat mu disini",
+                                "Pasien",
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 32,
                                     fontWeight: FontWeight.normal),
                               ),
                             ],
@@ -176,58 +161,22 @@ class _HomepageState extends State<Homepage> {
                         ),
                         Spacer(),
                         Image(
-                          image: AssetImage("images/apotek.png"),
-                          width: 80,
+                          image: AssetImage("images/qricon.png"),
+                          width: 120,
                         )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, BeritaPage.routename);
-                  },
-                  child: Container(
-                    height: 110,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                            image: AssetImage("images/bg_card_home.png"),
-                            fit: BoxFit.cover)),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 15, top: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Berita",
-                                style: TextStyle(
-                                    fontSize: 32, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Terkini",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Image(
-                          image: AssetImage("images/berita.png"),
-                          width: 100,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                SizedBox(height: 100,)
+                ,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    
+                    onPressed: (){
+                      Navigator.pushReplacementNamed(context, LoginPage.routename);
+                    }, child: Text("LogOut")))
               ],
             ),
           ),

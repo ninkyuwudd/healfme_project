@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/geolocator_provider.dart';
 
 class ApotikTerdekatPage extends StatefulWidget {
   static const routename = "/apotikmaps";
@@ -40,7 +43,11 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Set<Marker> markers = Set();
     // Set<Marker> _marker = {};
+    var loadcurloc = Provider.of<CurrentLocProvider>(context);
+    var curlat = loadcurloc.pslat;
+    var curlong = loadcurloc.pslong;
     final arg = ModalRoute.of(context)?.settings.arguments as dynamic;
     final lat = arg.lat;
     final long = arg.long;
@@ -56,12 +63,23 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
         position: LatLng(long, lat),
         infoWindow: InfoWindow(title: name));
 
+    Marker markerStart = Marker(
+        markerId: MarkerId('02'),
+        position: LatLng(curlat, curlong),
+        infoWindow: InfoWindow(title: "You"));
+
+    // Marker Startmark = Marker(
+    //   markerId: Mar
+    // );
+
     CameraPosition _kGooglePlex = CameraPosition(
       target: LatLng(long, lat),
       zoom: 16.4746,
     );
 
     makers.add(marker);
+    makers.add(markerStart);
+
 
     return Scaffold(
       appBar: AppBar(
