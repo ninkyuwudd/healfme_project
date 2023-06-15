@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/user_repo.dart';
+import 'package:healthproject/screen/homepage%20_admin.dart';
 import 'package:healthproject/screen/navigationbar.dart';
 import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:healthproject/widget/rounded_value_field.dart';
@@ -19,11 +20,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
-
-
-
   TextEditingController username = TextEditingController();
 
   TextEditingController password = TextEditingController();
@@ -37,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     // fetchRecord();
 
     super.initState();
-    Provider.of<UserProvider>(context,listen: false).fethcdatauser();
+    Provider.of<UserProvider>(context, listen: false).fethcdatauser();
   }
 
   // fetchRecord() async {
@@ -65,15 +61,11 @@ class _LoginPageState extends State<LoginPage> {
 
   var i = 0;
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     var getuser = Provider.of<UserProvider>(context);
     var loaduser = getuser.akun;
-  
+
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
@@ -196,15 +188,36 @@ class _LoginPageState extends State<LoginPage> {
                               print("dicilck");
                               if (password.text.isNotEmpty &
                                   username.text.isNotEmpty) {
-                                for (var i = 0; i <loaduser.length; i++) {
+                                for (var i = 0; i < loaduser.length; i++) {
                                   print(i);
-                                  if (username.text ==loaduser[i].username &&
-                                      password.text ==loaduser[i].password) {
-                                  var singledata =loaduser[i];
-                                  getuser.changeid(singledata.id.toString());
-                                  print(getuser.userid);
-                                  getuser.insertDataSekarang([singledata.nama,singledata.username,singledata.email,singledata.gender,singledata.phone,singledata.password,singledata.id,singledata.gambar]);
-                                  Navigator.pushReplacementNamed(context, BottomNavigationBarPage.routename);
+
+                                  if (username.text == loaduser[i].username &&
+                                      password.text == loaduser[i].password) {
+                                        
+                                    var singledata = loaduser[i];
+
+                                    getuser.changeid(singledata.id.toString());
+
+                                    print(getuser.userid);
+
+                                    getuser.insertDataSekarang([
+                                      singledata.nama,
+                                      singledata.username,
+                                      singledata.email,
+                                      singledata.gender,
+                                      singledata.phone,
+                                      singledata.password,
+                                      singledata.id,
+                                      singledata.gambar
+                                    ]);
+
+                                    if (loaduser[i].username == "admin") {
+                                      Navigator.pushReplacementNamed(
+                                          context, HomepageAdmin.routename);
+                                    } else {
+                                      Navigator.pushReplacementNamed(context,
+                                          BottomNavigationBarPage.routename);
+                                    }
                                     notallowedalert = false;
                                     print("berhasil");
                                     break;
@@ -234,7 +247,8 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 child: Text("Register",
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 222, 33, 121),
+                                        color:
+                                            Color.fromARGB(255, 222, 33, 121),
                                         fontWeight: FontWeight.bold))),
                           ],
                         ),

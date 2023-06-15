@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:healthproject/provider/jadwalPoli_provider.dart';
+import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+import 'package:healthproject/widget/daftar/form_common.dart';
 import 'package:healthproject/widget/jadwal/bordercontainer.dart';
 import 'package:healthproject/widget/jadwal/listJadwal_card.dart';
 import 'package:healthproject/widget/popup_warning.dart';
@@ -65,10 +67,16 @@ class _JadwalPoliState extends State<JadwalPoli> {
   bool content = false;
   bool nodatacontent = false;
 
+  var jadwal = TextEditingController();
+  bool _obscuretext = false;
+  bool jadwalcek = false;
+
   @override
   Widget build(BuildContext context) {
     var getNamaPoli = ModalRoute.of(context)!.settings.arguments as String;
     var loadJadwal = Provider.of<JadwalProvider>(context);
+    var loaduser = Provider.of<UserProvider>(context);
+    var getuser = loaduser.getUserData;
     return Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -164,7 +172,6 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   child: Container(
                       height: MediaQuery.of(context).size.height / 2,
                       child: Center(child: CircularProgressIndicator()))),
-
               Visibility(
                 visible: content,
                 child: Consumer<JadwalProvider>(
@@ -173,31 +180,32 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   if (loadJadwalProvider == null ||
                       loadJadwalProvider.isEmpty) {
                     return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Belum ada jadwal !",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: const Color.fromARGB(255, 233, 30, 182)),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Image(
-                            image: AssetImage("images/nojadwal.png"),
-                            width: 200,
-                          )
-                        ],
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Belum ada jadwal !",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color:
+                                      const Color.fromARGB(255, 233, 30, 182)),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Image(
+                              image: AssetImage("images/nojadwal.png"),
+                              width: 200,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  );
+                    );
                   } else {
                     return Column(
                       children: [
@@ -223,20 +231,17 @@ class _JadwalPoliState extends State<JadwalPoli> {
 
                                       return GestureDetector(
                                         onTap: () {
-                                          // print(getdata.hari);
-                                          // print(getdata.waktu);
-                                          // print("oke");
                                           setState(() {
                                             _char = getdata.waktu;
                                           });
-                                          
                                         },
                                         child: Container(
                                           margin: EdgeInsets.all(15),
                                           padding: EdgeInsets.only(
                                               left: 20, right: 20),
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(15),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
                                               color: Colors.white,
                                               boxShadow: [
                                                 BoxShadow(
@@ -244,22 +249,111 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                     spreadRadius: 2,
                                                     blurRadius: 2)
                                               ]),
-                                          child: ListTile(
-                                            title: Text(getdata.waktu),
-                                            subtitle: Text(getdata.hari),
-                                            trailing: Icon(Icons.arrow_right),
-                                            leading: Radio(
-                                              value: getdata.waktu,
-                                              groupValue: _char,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  hari = getdata.hari;
-                                                  print(value);
-                                                  _char = value as String;
-                                                });
-                                              },
-                                            ),
-                                          ),
+                                          child: getuser[0] == "admin"
+                                              ? Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(
+                                                    children: [
+                                                      Radio(
+                                                        value: getdata.waktu,
+                                                        groupValue: _char,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            hari = getdata.hari;
+                                                            print(value);
+                                                            _char =
+                                                                value as String;
+                                                          });
+                                                        },
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(getdata.waktu),
+                                                          Text(getdata.hari),
+                                                        ],
+                                                      ),
+                                                      Spacer(),
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            
+                                                            setState(() {
+                                                              jadwal.text = getdata.waktu;
+                                                            });
+                                                            showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return SingleChildScrollView(
+                                                                    child:
+                                                                        Container(
+                                                                      padding: EdgeInsets.only(
+                                                                          bottom: MediaQuery.of(context)
+                                                                              .viewInsets
+                                                                              .bottom),
+                                                                      child:
+                                                                          Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          FormCommon(
+                                                                              value: jadwal,
+                                                                              title: "Edit Jadwal",
+                                                                              hover: "Masukkan jadwal baru..."),
+                                                                          Container(
+                                                                            margin: EdgeInsets.only(left: 50,top: 20,right: 50,bottom: 20),
+                                                                            child: Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              children: [
+                                                                                ElevatedButton(onPressed: () {
+
+                                                                                }, child: Text("Batal")),
+                                                                                Spacer(),
+                                                                                ElevatedButton(onPressed: () {}, child: Text("Simpan"))
+                                                                              ],
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                });
+                                                          },
+                                                          icon:
+                                                              Icon(Icons.edit)),
+                                                      IconButton(
+                                                          onPressed: () {},
+                                                          icon: Icon(
+                                                            Icons.delete,
+                                                            color: Colors.red,
+                                                          ))
+                                                    ],
+                                                  ),
+                                                )
+                                              : ListTile(
+                                                  title: Text(getdata.waktu),
+                                                  subtitle: Text(getdata.hari),
+                                                  trailing:
+                                                      Icon(Icons.arrow_right),
+                                                  leading: Radio(
+                                                    value: getdata.waktu,
+                                                    groupValue: _char,
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        hari = getdata.hari;
+                                                        print(value);
+                                                        _char = value as String;
+                                                      });
+                                                    },
+                                                  ),
+                                                ),
                                         ),
                                       );
                                     },
@@ -274,61 +368,63 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   }
                 })),
               ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20),
-                width: 340,
-                height: 45,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 206, 75, 191),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+              Visibility(
+                visible: getuser[0] == "admin" ? false : true,
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  width: 340,
+                  height: 45,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 206, 75, 191),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    if (_char == "") {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return PopupWarning(
-                                pesan: "Pilih Jadwal terlebih dahulu !");
-                          });
-                    } else {
-                      print("jam : $_char");
-                      print("hari : $hari");
-                      print(DateTime.now().millisecond);
-                      String abjad = '';
-                      setState(() {
-                      if(getNamaPoli == "Poli Umum"){
-                        abjad = "U";
-                      }else if(getNamaPoli == "Poli Gigi"){
-                        abjad = "G";
-                      }else if(getNamaPoli == "Poli Lansia"){
-                        abjad = "L";
-                      }else if(getNamaPoli == "Poli Gizi"){
-                        abjad = "Z";
-                      }else if(getNamaPoli == "Poli Sanitasi"){
-                        abjad = "S";
-                      }else if(getNamaPoli == "Poli Kia"){
-                        abjad = "K";
-                      }else{
-                        print("Salah");
+                    onPressed: () {
+                      if (_char == "") {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return PopupWarning(
+                                  pesan: "Pilih Jadwal terlebih dahulu !");
+                            });
+                      } else {
+                        print("jam : $_char");
+                        print("hari : $hari");
+                        print(DateTime.now().millisecond);
+                        String abjad = '';
+                        setState(() {
+                          if (getNamaPoli == "Poli Umum") {
+                            abjad = "U";
+                          } else if (getNamaPoli == "Poli Gigi") {
+                            abjad = "G";
+                          } else if (getNamaPoli == "Poli Lansia") {
+                            abjad = "L";
+                          } else if (getNamaPoli == "Poli Gizi") {
+                            abjad = "Z";
+                          } else if (getNamaPoli == "Poli Sanitasi") {
+                            abjad = "S";
+                          } else if (getNamaPoli == "Poli Kia") {
+                            abjad = "K";
+                          } else {
+                            print("Salah");
+                          }
+                        });
+
+                        String urutan = "$abjad${DateTime.now().millisecond}";
+                        List jadwalPilihan = [_char, hari, urutan];
+                        loadJadwal.getUserJadwal(jadwalPilihan);
+                        loadJadwal.addDataUserJadwal();
+                        Navigator.pushNamed(context, FormPendaftaran.routename);
                       }
-                        
-                      });
-                      
-                      String urutan = "$abjad${DateTime.now().millisecond}";
-                      List jadwalPilihan = [_char, hari,urutan];
-                      loadJadwal.getUserJadwal(jadwalPilihan);
-                      loadJadwal.addDataUserJadwal();
-                      Navigator.pushNamed(context, FormPendaftaran.routename);
-                    }
-                  },
-                  child: const Text(
-                    "Selanjutnya",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                    },
+                    child: const Text(
+                      "Selanjutnya",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ),

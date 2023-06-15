@@ -67,14 +67,18 @@ class _ApotekListState extends State<ApotekList> {
               height: MediaQuery.of(context).size.height,
               child: Consumer<ApotekProvider>(
                   builder: (context, apotekprovider, _) {
+
                     print("lat :$curlat,long : $curlong");
+
                 final showdata = apotekprovider.apotek;
 
                   showdata.sort((a, b) {
                   double jarakA =
                       hitungjarak(curlong, a.lat,curlat, a.long);
+
                   double jarakB =
                       hitungjarak(curlong, b.lat,curlat, b.long);
+
                   return jarakA.compareTo(jarakB);
 
                 // showdata.sort((a, b) {
@@ -88,9 +92,14 @@ class _ApotekListState extends State<ApotekList> {
                   child: ListView.builder(
                       itemCount: showdata.length,
                       itemBuilder: (context, index) {
+
                         final idxapotik = showdata[index];
+
                         double jarakterdekat = hitungjarak(113.7164,
                             idxapotik.lat, -8.1651, idxapotik.long);
+
+                        
+
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(
@@ -123,15 +132,7 @@ class _ApotekListState extends State<ApotekList> {
                 );
               }),
             )
-          // : Center(
-          //     child: ElevatedButton(
-          //         onPressed: () {
-          //           setState(() {
-          //             display = true;
-          //           });
-          //         },
-          //         child: Text("load apotek")),
-          //   ),
+
     );
   }
 }

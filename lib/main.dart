@@ -18,6 +18,7 @@ import 'package:healthproject/screen/apotek/apotik_list_page.dart';
 import 'package:healthproject/screen/apotek/apotik_maps_page.dart';
 import 'package:healthproject/screen/berita/berita_detail_page.dart';
 import 'package:healthproject/screen/berita/berita_page.dart';
+import 'package:healthproject/screen/homepage%20_admin.dart';
 import 'package:healthproject/screen/poli/daftar_poli.dart';
 import 'package:healthproject/screen/poli/ringkasan.dart';
 import 'package:healthproject/screen/homepage.dart';
@@ -79,7 +80,8 @@ class MyApp extends StatelessWidget {
           JadwalPoli.routename :(context) => JadwalPoli(),
           Ringkasan.routename: (context) => Ringkasan(),
           about.routeName : (context) => about(),
-          EditProfil.routename :(context) =>  EditProfil()
+          EditProfil.routename :(context) =>  EditProfil(),
+          HomepageAdmin.routename :(context) => HomepageAdmin()
         },
       ),
     );
