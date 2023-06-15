@@ -25,7 +25,7 @@ class JadwalProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> editJadwalPoliData(String jadwal,String id) async {
+  Future<void> editJadwalPoliData(String jadwal, String id) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
         'PUT',
@@ -41,22 +41,22 @@ class JadwalProvider with ChangeNotifier {
     } else {
       print(response.reasonPhrase);
     }
+  }
 
-    // print(jadwal);
-    // print("id yg diterima : $id");
-    // final url =
-    //     "https://express-server-production-8525.up.railway.app/jadwal/updateJadwal/$id";
-    // final uri = Uri.parse(url);
-    // final response = await http.put(uri,body: json.encode({
-    //   'waktu' : "nope"
-    // } ));
-    // print(response.body);
-    // if (response.statusCode == 200) {
-    //   print("Berhasil edit data jadwal");
-    // } else {
-    //   throw Exception("failed to load jadwalpoli data");
-    // }
-    // notifyListeners();
+  Future<void> deleteJadwalPoli(String id) async {
+    var request = http.Request(
+        'DELETE',
+        Uri.parse(
+            'https://express-server-production-8525.up.railway.app/jadwal/delJadwal/$id'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+    notifyListeners();
   }
 
   Future<void> getJadwalPolidata(String poli, String hari) async {

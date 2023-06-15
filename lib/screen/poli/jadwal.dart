@@ -318,14 +318,12 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                                               children: [
                                                                                 ElevatedButton(onPressed: () {
                                                                                   // loadJadwal.getAllJadwal();
-                                                                                  
-                                                                               
-                                                                                  loadJadwal.editJadwalPoliData(jadwal.text,getdata.id);
-                                                                               
-                                                                                    
+                                                                                  Navigator.pop(context);
+
                                                                                 }, child: Text("Batal")),
                                                                                 Spacer(),
                                                                                 ElevatedButton(onPressed: () {
+                                                                                  loadJadwal.editJadwalPoliData(jadwal.text,getdata.id);
                                                                                   // loadJadwal.editJadwalPoliData(jadwal.text,loadJadwal.allDataJadwal[]);
                                                                                 }, child: Text("Simpan"))
                                                                               ],
@@ -340,7 +338,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                           icon:
                                                               Icon(Icons.edit)),
                                                       IconButton(
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            loadJadwal.deleteJadwalPoli(getdata.id);
+                                                            loadJadwal.getJadwalPolidata(getNamaPoli, "senin");
+                                                          },
                                                           icon: Icon(
                                                             Icons.delete,
                                                             color: Colors.red,
