@@ -160,71 +160,63 @@ class EAntrian extends StatelessWidget {
                         itemCount: loadjadwal.daftarOrderJadwal.length,
                         itemBuilder: (context, index) {
                           //isinya hari,jam , antrian
-                          List dataorderjadwal = loadjadwal.daftarOrderJadwal[index];
-                          
-                             String geturutan = dataorderjadwal[2];
-                                print(geturutan);
-                          
+                          List dataorderjadwal =
+                              loadjadwal.daftarOrderJadwal[index];
 
-                          return Container(
-                            height: MediaQuery.of(context).size.height / 2 + 70,
-                            child: ListView.builder(
-                              itemCount: getuser.ListDataPasien.length,
-                              itemBuilder: (context, index) {
+                          String geturutan = dataorderjadwal[2];
+                          print(geturutan);
 
-                                //isinya nama ,usia, nik dll
-                                List dataListPasien = getuser.ListDataPasien[index];
-                             
+                          //isinya nama ,usia, nik dll
+                          List dataListPasien = getuser.ListDataPasien[index];
 
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Antrian Sekarang',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              Text(
-                                                'A12',
-                                                style: TextStyle(
-                                                  fontSize: 38,
-                                                  fontWeight: FontWeight.w900,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'Antrian Anda',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              Text(
-                                                geturutan,
-                                                style: TextStyle(
-                                                  fontSize: 38,
-                                                  fontWeight: FontWeight.w900,
-                                                ),
-                                              ),
-                                            ],
+                          return GestureDetector(
+                            onTap: () {},
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Antrian Sekarang',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                          
-                                          QrImageView(
-                                            data: '''
+                                        ),
+                                        Text(
+                                          'A12',
+                                          style: TextStyle(
+                                            fontSize: 38,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Antrian Anda',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          geturutan,
+                                          style: TextStyle(
+                                            fontSize: 38,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    QrImageView(
+                                      data: '''
 Nama        : ${dataListPasien[0]}
 Nik         : ${dataListPasien[1]}
 Alamat      : ${dataListPasien[2]}
@@ -233,16 +225,13 @@ Usia        : ${dataListPasien[3]}
 Penjamin    : ${dataListPasien[5]}
 no penjamin : ${dataListPasien[6]}
                                     ''',
-                                            version: QrVersions.auto,
-                                            size: 150,
-                                            gapless: false,
-                                          ),
-                                        ],
-                                      ),
+                                      version: QrVersions.auto,
+                                      size: 150,
+                                      gapless: false,
                                     ),
-                                  ),
-                                );
-                              },
+                                  ],
+                                ),
+                              ),
                             ),
                           );
                         }),
