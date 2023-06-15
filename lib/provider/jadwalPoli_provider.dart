@@ -25,6 +25,26 @@ class JadwalProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> createJadwalPoli(String hari, String jadwal, String poli) async {
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'https://express-server-production-8525.up.railway.app/jadwal/createJadwal'));
+    // request.body =
+    //     '''{\r\n  "hari" : "Senin",\r\n  "waktu" : "10:00 - 11:30",\r\n  "nama" : "Poli Umum"\r\n}\r\n\r\n}''';
+    request.body = json.encode({"hari": hari, "waktu": jadwal, "nama": poli});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
   Future<void> editJadwalPoliData(String jadwal, String id) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(

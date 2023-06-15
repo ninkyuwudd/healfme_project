@@ -4,15 +4,10 @@ import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/daftar/form_common.dart';
-import 'package:healthproject/widget/jadwal/bordercontainer.dart';
-import 'package:healthproject/widget/jadwal/listJadwal_card.dart';
 import 'package:healthproject/widget/popup_warning.dart';
-import 'package:intl/intl.dart';
+import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:provider/provider.dart';
 
-// void main() async {
-//   runApp(const JadwalPoli());
-// }
 
 class JadwalPoli extends StatefulWidget {
   static const routename = "/JadwaPoli";
@@ -60,16 +55,22 @@ class _JadwalPoliState extends State<JadwalPoli> {
     });
   }
 
+
+
+
   String _char = "";
-  String hari = "";
+  String hari = "Senin";
 
   bool cirular = true;
   bool content = false;
   bool nodatacontent = false;
 
   var jadwal = TextEditingController();
+  var addJadwal = TextEditingController();
+  
   bool _obscuretext = false;
   bool jadwalcek = false;
+  bool addjawalcek = false;
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +95,47 @@ class _JadwalPoliState extends State<JadwalPoli> {
             width: 100,
           ),
           centerTitle: true,
+
+
+          actions: [
+            Container(
+              child: IconButton(onPressed: (){
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    title: Text("Tambah Jadwal hari $hari"),
+                    content: SizedBox(
+                      height: 200,
+                      child: Column(
+                        children: [
+                          RoundeFieldWhite(valuenya: addJadwal, title: "Jadwal Baru", hover: "Ex: 09:00 - 12:00", check: addjawalcek),
+                          SizedBox(height: 20,),
+                          ElevatedButton(onPressed: (){
+                            if(addJadwal.text.isNotEmpty){
+                              loadJadwal.createJadwalPoli(hari, addJadwal.text, getNamaPoli);
+
+                              loadingdata();
+                              setState(() {
+                                addJadwal.text == "";
+                              });
+                              Navigator.pop(context);
+                              
+                              loadJadwal.getJadwalPolidata(getNamaPoli, hari);
+                            }
+                            
+                          }, child: Text("Submit"))
+                        ],
+                      ),
+                    ),
+                  );
+                });
+              }, icon: Icon(Icons.add,color: Colors.black45,)),
+            )
+          ],
         ),
         backgroundColor: const Color.fromARGB(255, 249, 249, 249),
+
+
+
         body: SingleChildScrollView(
           child: Container(
             child: Column(children: [
@@ -153,6 +193,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
                             ],
                             radioButtonValue: (value) {
                               _char = "";
+                              
+                              setState(() {
+                                hari = value;
+                              });
                               loadJadwal.getJadwalPolidata(getNamaPoli, value);
                               loadingdata();
                             },
@@ -338,9 +382,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                           icon:
                                                               Icon(Icons.edit)),
                                                       IconButton(
-                                                          onPressed: () {
+                                                          onPressed: () async{
+                                                          
                                                             loadJadwal.deleteJadwalPoli(getdata.id);
-                                                            loadJadwal.getJadwalPolidata(getNamaPoli, "senin");
+                                                            loadJadwal.getJadwalPolidata(getNamaPoli, hari);
                                                           },
                                                           icon: Icon(
                                                             Icons.delete,
