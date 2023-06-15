@@ -167,16 +167,20 @@ class _JadwalPoliState extends State<JadwalPoli> {
               SizedBox(
                 height: 20,
               ),
+
               Visibility(
                   visible: cirular,
                   child: Container(
                       height: MediaQuery.of(context).size.height / 2,
                       child: Center(child: CircularProgressIndicator()))),
+
               Visibility(
                 visible: content,
                 child: Consumer<JadwalProvider>(
                     builder: ((context, jadwalprovider, child) {
+
                   final loadJadwalProvider = jadwalprovider.jadwalPoli;
+
                   if (loadJadwalProvider == null ||
                       loadJadwalProvider.isEmpty) {
                     return Container(
@@ -278,7 +282,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                       Spacer(),
                                                       IconButton(
                                                           onPressed: () {
-                                                            
+                                                            print(getdata.id);
                                                             setState(() {
                                                               jadwal.text = getdata.waktu;
                                                             });
@@ -313,10 +317,17 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                                               children: [
                                                                                 ElevatedButton(onPressed: () {
-
+                                                                                  // loadJadwal.getAllJadwal();
+                                                                                  
+                                                                               
+                                                                                  loadJadwal.editJadwalPoliData(jadwal.text,getdata.id);
+                                                                               
+                                                                                    
                                                                                 }, child: Text("Batal")),
                                                                                 Spacer(),
-                                                                                ElevatedButton(onPressed: () {}, child: Text("Simpan"))
+                                                                                ElevatedButton(onPressed: () {
+                                                                                  // loadJadwal.editJadwalPoliData(jadwal.text,loadJadwal.allDataJadwal[]);
+                                                                                }, child: Text("Simpan"))
                                                                               ],
                                                                             ),
                                                                           )

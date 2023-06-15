@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -9,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../model/jadwal_model.dart';
 import 'package:http/http.dart' as http;
 
-class JadwalProvider with ChangeNotifier{
+class JadwalProvider with ChangeNotifier {
   List<Users>? _dataJadwalPoli = [];
   List<Users>? get jadwalPoli => _dataJadwalPoli;
 
@@ -17,40 +13,95 @@ class JadwalProvider with ChangeNotifier{
 
   List daftarOrderJadwal = [];
 
-  getUserJadwal(List userjadwal){
+  List<JadwalPoli> allDataJadwal = [];
+
+  getUserJadwal(List userjadwal) {
     pilihanJadwal = userjadwal;
     notifyListeners();
   }
 
-  addDataUserJadwal(){
+  addDataUserJadwal() {
     daftarOrderJadwal.add(pilihanJadwal);
     notifyListeners();
   }
 
+  Future<void> editJadwalPoliData(String jadwal,String id) async {
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request(
+        'PUT',
+        Uri.parse(
+            'https://express-server-production-8525.up.railway.app/jadwal/updateJadwal/$id'));
+    request.body = json.encode({"waktu": jadwal});
+    request.headers.addAll(headers);
 
-  Future<void> getJadwalPolidata(String poli,String hari) async{
-    final url = "https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoliByDay?poli=$poli&day=$hari";
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+
+    // print(jadwal);
+    // print("id yg diterima : $id");
+    // final url =
+    //     "https://express-server-production-8525.up.railway.app/jadwal/updateJadwal/$id";
+    // final uri = Uri.parse(url);
+    // final response = await http.put(uri,body: json.encode({
+    //   'waktu' : "nope"
+    // } ));
+    // print(response.body);
+    // if (response.statusCode == 200) {
+    //   print("Berhasil edit data jadwal");
+    // } else {
+    //   throw Exception("failed to load jadwalpoli data");
+    // }
+    // notifyListeners();
+  }
+
+  Future<void> getJadwalPolidata(String poli, String hari) async {
+    final url =
+        "https://express-server-production-8525.up.railway.app/jadwal/getJadwalByPoliByDay?poli=$poli&day=$hari";
     final uri = Uri.parse(url);
     final response = await http.get(uri);
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
       final jadwalPoli = jsonData['data'] as List<dynamic>;
       final List<Users> loadedJadwalPoli = [];
 
       jadwalPoli.forEach((element) {
         loadedJadwalPoli.add(Users.fromJson(element));
-       });
+      });
 
       _dataJadwalPoli = loadedJadwalPoli;
       print(jsonData["data"]);
       notifyListeners();
-    }
-    else{
+    } else {
       throw Exception("failed to load jadwalpoli data");
     }
-
   }
 
+  Future<void> getAllJadwal() async {
+    final url =
+        "https://express-server-production-8525.up.railway.app/jadwal/getJadwal";
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      final jadwalPoli = jsonData['data'] as List<dynamic>;
+      final List<JadwalPoli> loadedAllJadwal = [];
+
+      jadwalPoli.forEach((element) {
+        loadedAllJadwal.add(JadwalPoli.fromJson(element));
+      });
+
+      allDataJadwal = loadedAllJadwal;
+      print(jsonData["data"]);
+      notifyListeners();
+    } else {
+      throw Exception("failed to load jadwalpoli data");
+    }
+  }
 }
 
 

@@ -25,20 +25,24 @@ class Users {
 }
 
 class JadwalPoli {
+  String id;
     String hari;
     String waktu;
 
     JadwalPoli({
+      required this.id,
         required this.hari,
         required this.waktu,
     });
 
     factory JadwalPoli.fromJson(Map<String, dynamic> json) => JadwalPoli(
+        id: json["id"],
         hari: json["hari"],
         waktu: json["waktu"],
     );
 
     Map<String, dynamic> toJson() => {
+      "id" : id,
         "hari": hari,
         "waktu": waktu,
     };
