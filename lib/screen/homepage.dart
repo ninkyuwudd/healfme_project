@@ -5,10 +5,12 @@ import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/daftar_poli.dart';
 import 'package:healthproject/screen/poli/jadwal.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
+import 'package:healthproject/screen/testing/test_addantrian.dart';
 import 'package:healthproject/widget/homepage/icon_grid.dart';
 import 'package:healthproject/widget/homepage/profile_card.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/antrian_provider.dart';
 import 'apotek/apotik_list_page.dart';
 import 'berita/berita_page.dart';
 
@@ -22,6 +24,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+        var loaduser = Provider.of<UserProvider>(context,listen: false);
+    var getuser = loaduser.getUserData;
+    print("id: ${getuser[6]}");
+
+    Provider.of<AntrianProvider>(context, listen: false).fetchDataAntrian(getuser[6]);
+  }
 
 
   @override
@@ -228,6 +240,9 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
+                TextButton(onPressed: (){
+                  Navigator.pushNamed(context, GetAntrian.routename);
+                }, child: Text("Test"))
               ],
             ),
           ),

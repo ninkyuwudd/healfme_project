@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/homepage%20_admin.dart';
 import 'package:healthproject/screen/navigationbar.dart';
+import 'package:healthproject/screen/testing/test_addantrian.dart';
 import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:healthproject/widget/rounded_value_field.dart';
 import 'package:provider/provider.dart';
@@ -217,6 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                                     } else {
                                       Navigator.pushReplacementNamed(context,
                                           BottomNavigationBarPage.routename);
+                                          //      Navigator.pushReplacementNamed(context,
+                                          // GetAntrian.routename);
+                                          
                                     }
                                     notallowedalert = false;
                                     print("berhasil");

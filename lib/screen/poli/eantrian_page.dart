@@ -4,6 +4,7 @@ import 'package:healthproject/widget/jadwal/infotext.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../provider/antrian_provider.dart';
 import '../../provider/user_repo.dart';
 
 class EAntrian extends StatelessWidget {
@@ -15,6 +16,8 @@ class EAntrian extends StatelessWidget {
     var dataUser = getuser.dataPribadiUser;
 
     var loadjadwal = Provider.of<JadwalProvider>(context);
+        var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
+    var getAntrian = loadAntri.antrian;
 
     return Scaffold(
       appBar: AppBar(
@@ -113,7 +116,7 @@ class EAntrian extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: getuser.daftar == false
+      body: getAntrian.length == 0
           ? Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -157,17 +160,17 @@ class EAntrian extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 2 + 70,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
-                        itemCount: loadjadwal.daftarOrderJadwal.length,
+                        itemCount: getAntrian.length,
                         itemBuilder: (context, index) {
                           //isinya hari,jam , antrian
-                          List dataorderjadwal =
-                              loadjadwal.daftarOrderJadwal[index];
+                          var antrian =
+                              getAntrian[index];
 
-                          String geturutan = dataorderjadwal[2];
-                          print(geturutan);
+                          // String geturutan = dataorderjadwal[2];
+                          // print(geturutan);
 
                           //isinya nama ,usia, nik dll
-                          List dataListPasien = getuser.ListDataPasien[index];
+                          // List dataListPasien = getuser.ListDataPasien[index];
 
                           return GestureDetector(
                             onTap: () {},
@@ -207,7 +210,7 @@ class EAntrian extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          geturutan,
+                                          antrian.nomerAntrian,
                                           style: TextStyle(
                                             fontSize: 38,
                                             fontWeight: FontWeight.w900,
@@ -217,13 +220,13 @@ class EAntrian extends StatelessWidget {
                                     ),
                                     QrImageView(
                                       data: '''
-${dataListPasien[0]}
-${dataListPasien[1]}
-${dataListPasien[2]}
-${dataListPasien[4]} 
-${dataListPasien[3]}
-${dataListPasien[5]}
-${dataListPasien[6]}
+${antrian.nama}
+${antrian.usia}
+${antrian.nik}
+${antrian.gender} 
+${antrian.alamat}
+${antrian.penjamin}
+${antrian.nomerPenjamin}
                                     ''',
                                       version: QrVersions.auto,
                                       size: 150,

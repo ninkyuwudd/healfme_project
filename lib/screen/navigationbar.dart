@@ -32,7 +32,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           ), 
           child: BottomNavigationBar(
             selectedItemColor: Color.fromARGB(255, 230, 7, 255),
-            unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
+            unselectedItemColor: Color.fromARGB(255, 197, 197, 197),
             backgroundColor: Colors.white,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home),label: "home"),

@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthproject/colors.dart';
+import 'package:healthproject/provider/antrian_provider.dart';
 import 'package:healthproject/provider/apotik_provider.dart';
 import 'package:healthproject/provider/berita_provider.dart';
 import 'package:healthproject/provider/geolocator_provider.dart';
@@ -29,6 +30,7 @@ import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:healthproject/screen/poli/scan_daftar.dart';
 import 'package:healthproject/screen/register_page.dart';
 import 'package:healthproject/screen/testing/maps_poly_test.dart';
+import 'package:healthproject/screen/testing/test_addantrian.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -55,7 +57,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CurrentLocProvider()),
         ChangeNotifierProvider(create: (_) => BeritaProvider()),
         ChangeNotifierProvider(create: (_) => JadwalProvider()),
-        ChangeNotifierProvider(create: (_) => PilihUploadfile())
+        ChangeNotifierProvider(create: (_) => PilihUploadfile()),
+        ChangeNotifierProvider(create: (_) => AntrianProvider(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -65,7 +68,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: mcgpalette0,
         ),
         home: LoginPage(),
-        // home:  QrScanPage(),
+        // home:  GetAntrian(),
 
         routes: {
           Homepage.routename: (context) => Homepage(),
@@ -83,7 +86,8 @@ class MyApp extends StatelessWidget {
           about.routeName : (context) => about(),
           EditProfil.routename :(context) =>  EditProfil(),
           HomepageAdmin.routename :(context) => HomepageAdmin(),
-          QrScanPage.routename : (context) => QrScanPage()
+          QrScanPage.routename : (context) => QrScanPage(),
+          GetAntrian.routename :(context) => GetAntrian()
         },
       ),
     );
