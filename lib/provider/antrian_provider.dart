@@ -31,4 +31,23 @@ class AntrianProvider extends ChangeNotifier {
   }
 
 
+
+  void addDataAntrian(String nama,String usia,String nik,String alamat,String gender,String penjamin,String nopenjamin,String iduser,String nomerAntrian){
+    final firestoredb = FirebaseFirestore.instance.collection('Antrian');
+
+
+    firestoredb.doc().set({
+        "alamat": alamat,
+        "gender": gender,
+        "iduser": iduser,
+        "nama": nama,
+        "nik": nik,
+        "nomer_antrian": nomerAntrian,
+        "nomer_penjamin": nopenjamin,
+        "penjamin": penjamin,
+        "usia": usia,
+    });
+    notifyListeners();
+  }
+
 }

@@ -489,7 +489,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                         List jadwalPilihan = [_char, hari, urutan];
                         loadJadwal.getUserJadwal(jadwalPilihan);
                         loadJadwal.addDataUserJadwal();
-                        Navigator.pushNamed(context, FormPendaftaran.routename);
+                        Navigator.pushNamed(context, FormPendaftaran.routename,arguments: urutan);
                       }
                     },
                     child: const Text(

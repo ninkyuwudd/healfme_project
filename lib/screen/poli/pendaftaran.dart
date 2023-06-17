@@ -6,6 +6,8 @@ import 'package:healthproject/widget/daftar/form_common.dart';
 import 'package:healthproject/widget/daftar/form_number.dart';
 import 'package:provider/provider.dart';
 
+import '../../provider/antrian_provider.dart';
+
 
 
 class FormPendaftaran extends StatefulWidget {
@@ -30,6 +32,8 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
   @override
   Widget build(BuildContext context) {
     var getuser = Provider.of<UserProvider>(context);
+        var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
+    var getNomerAtrian = ModalRoute.of(context)?.settings.arguments as String;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -175,6 +179,7 @@ class _FormPendaftaranState extends State<FormPendaftaran> {
                             List dataResult = [nama.text,usia.text,nik.text,alamat.text,gender,penjamin,nopenjamin.text];
                             getuser.getDataPribadiUser(dataResult);
                             getuser.addDataPasien();
+                            loadAntri.addDataAntrian(nama.text, usia.text, nik.text, alamat.text, gender.toString(), penjamin.toString(), nopenjamin.text, getuser.getUserData[6], getNomerAtrian);
                             Navigator.pushNamed(context, UnggahKtpBpjs.routename);
                           } else {
                             print("masih kosong");
