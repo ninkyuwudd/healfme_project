@@ -25,6 +25,8 @@ class _ApotekListState extends State<ApotekList> {
       final loaddata = Provider.of<ApotekProvider>(context, listen: false);
       loaddata.fetchdataapotek();
     });
+
+    //untuk get lokasi kita saat ini
     Provider.of<CurrentLocProvider>(context,listen: false).getlocation();
   }
 
@@ -32,6 +34,9 @@ class _ApotekListState extends State<ApotekList> {
   double toradians(double radian) {
     return radian * (pi / 180);
   }
+
+
+  //bagian menghiutng jarak terdekat dari posisi sekarang
 
   hitungjarak(var lat1, var lat2, var long1, var long2) {
     double rbumi = 6371;
@@ -71,7 +76,7 @@ class _ApotekListState extends State<ApotekList> {
                     print("lat :$curlat,long : $curlong");
 
                 final showdata = apotekprovider.apotek;
-
+                  //bagian sorting data agar urut dari yg paling dekat
                   showdata.sort((a, b) {
                   double jarakA =
                       hitungjarak(curlong, a.lat,curlat, a.long);
@@ -81,12 +86,7 @@ class _ApotekListState extends State<ApotekList> {
 
                   return jarakA.compareTo(jarakB);
 
-                // showdata.sort((a, b) {
-                //   double jarakA =
-                //       hitungjarak(curlat, a.lat,curlong, a.long);
-                //   double jarakB =
-                //       hitungjarak(curlat, b.lat,curlong, b.long);
-                //   return jarakA.compareTo(jarakB);
+
                 });
                 return Container(
                   child: ListView.builder(
