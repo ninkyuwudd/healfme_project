@@ -227,6 +227,7 @@ ${antrian.gender}
 ${antrian.alamat}
 ${antrian.penjamin}
 ${antrian.nomerPenjamin}
+id: ${antrian.id}
                                     ''',
                                       version: QrVersions.auto,
                                       size: 150,

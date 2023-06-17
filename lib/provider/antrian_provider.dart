@@ -30,6 +30,23 @@ class AntrianProvider extends ChangeNotifier {
       notifyListeners();
   }
 
+    void fetchDataAntrianAll() async {
+    QuerySnapshot<Map<String,dynamic>> dataAntrian = await FirebaseFirestore.instance.collection('Antrian').get();
+
+    _usrAntrian = dataAntrian.docs.map((doc) => Antrian(
+      id: doc.id,
+      alamat: doc.data()["alamat"], 
+      gender: doc.data()["gender"], 
+      iduser: doc.data()["iduser"], 
+      nama: doc.data()["nama"], 
+      nik: doc.data()["nik"], 
+      nomerAntrian: doc.data()["nomer_antrian"], 
+      nomerPenjamin: doc.data()["nomer_penjamin"], 
+      penjamin: doc.data()["penjamin"], 
+      usia: doc.data()["usia"])).toList();
+      notifyListeners();
+  }
+
 
 
   void addDataAntrian(String nama,String usia,String nik,String alamat,String gender,String penjamin,String nopenjamin,String iduser,String nomerAntrian){
@@ -47,6 +64,15 @@ class AntrianProvider extends ChangeNotifier {
         "penjamin": penjamin,
         "usia": usia,
     });
+    notifyListeners();
+  }
+
+
+  void deleteAtrian(String id){
+    final firestoredb = FirebaseFirestore.instance.collection('Antrian');
+
+    firestoredb.doc(id).delete();
+    print("berhasil menghapus data");
     notifyListeners();
   }
 

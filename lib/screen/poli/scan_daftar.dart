@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+
+import '../../provider/antrian_provider.dart';
 
 class QrScanPage extends StatefulWidget {
   static const routename = "/qrscan";
@@ -10,9 +13,18 @@ class QrScanPage extends StatefulWidget {
 }
 
 class _QrScanPageState extends State<QrScanPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<AntrianProvider>(context, listen: false).fetchDataAntrianAll();
+  }
   String result = '';
   @override
   Widget build(BuildContext context) {
+        var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
+    var getAntrian = loadAntri.antrian;
     return Scaffold(
       body: Center(
         child: Column(
@@ -28,6 +40,17 @@ class _QrScanPageState extends State<QrScanPage> {
                 setState(() {
                   if (res is String) {
                     result = res;
+                    for(var i = 0; i < getAntrian.length; i ++){
+                      var idatnrian = getAntrian[i].id;
+                      if(result.contains(idatnrian)){
+                        print(idatnrian);
+                        print("antrian sudah selesai");
+                        loadAntri.deleteAtrian(idatnrian);
+                        break;
+                      }else{
+                        print("masih gagal");
+                      }
+                    }
                   }
                 });
               },
