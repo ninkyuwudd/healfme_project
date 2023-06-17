@@ -96,10 +96,10 @@ class _JadwalPoliState extends State<JadwalPoli> {
           ),
           centerTitle: true,
 
-
+          // bagian add jadwal 
           actions: [
             Container(
-              child: IconButton(onPressed: (){
+              child:getuser[0] != "admin"? Container(): IconButton(onPressed: (){
                 showDialog(context: context, builder: (context){
                   return AlertDialog(
                     title: Text("Tambah Jadwal hari $hari"),
@@ -150,6 +150,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
+
               Container(
                 margin: EdgeInsets.only(top: 20, left: 15, right: 15),
                 padding: EdgeInsets.all(5),
@@ -167,6 +168,8 @@ class _JadwalPoliState extends State<JadwalPoli> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Container(
+
+                    //bagian tombol hari menggunakan radio button
                     child: Row(
                       children: [
                         CustomRadioButton(
@@ -211,13 +214,16 @@ class _JadwalPoliState extends State<JadwalPoli> {
               SizedBox(
                 height: 20,
               ),
-
+              
+              //bagian circular progres ketika load data
               Visibility(
                   visible: cirular,
                   child: Container(
                       height: MediaQuery.of(context).size.height / 2,
                       child: Center(child: CircularProgressIndicator()))),
+              
 
+              //bagian list data jawal / pemberiatahuan jadwal masih kosong
               Visibility(
                 visible: content,
                 child: Consumer<JadwalProvider>(
@@ -255,6 +261,8 @@ class _JadwalPoliState extends State<JadwalPoli> {
                       ),
                     );
                   } else {
+
+                    //ketika jadwal tidak kosong
                     return Column(
                       children: [
                         Visibility(
@@ -297,6 +305,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                     spreadRadius: 2,
                                                     blurRadius: 2)
                                               ]),
+
                                           child: getuser[0] == "admin"
                                               ? Container(
                                                   padding: EdgeInsets.all(10),
@@ -324,6 +333,8 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                         ],
                                                       ),
                                                       Spacer(),
+
+                                                      //button edit ketika user jadi admin
                                                       IconButton(
                                                           onPressed: () {
                                                             print(getdata.id);
@@ -394,6 +405,8 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                     ],
                                                   ),
                                                 )
+
+                                                //ketika pengguna bukan admin 
                                               : ListTile(
                                                   title: Text(getdata.waktu),
                                                   subtitle: Text(getdata.hari),
@@ -425,6 +438,9 @@ class _JadwalPoliState extends State<JadwalPoli> {
                   }
                 })),
               ),
+
+
+              //ketika pengguna adalah admin makan tombol selanjutnya di hilangkan
               Visibility(
                 visible: getuser[0] == "admin" ? false : true,
                 child: Container(

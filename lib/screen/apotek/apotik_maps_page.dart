@@ -18,6 +18,7 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+
   static final Marker _kGooglePlexMarker = Marker(
     markerId: MarkerId('_kGooglePlex'),
     infoWindow: InfoWindow(title: 'Google Plex1'),
@@ -25,6 +26,8 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
     position: LatLng(-8.184486, 113.668076),
   );
 
+
+  //create polyline tapi belum work
   void _createpolyline(var lat, var long) {
     Polyline polyline = Polyline(
         polylineId: PolylineId('Rute'),
@@ -43,8 +46,7 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Set<Marker> markers = Set();
-    // Set<Marker> _marker = {};
+
     var loadcurloc = Provider.of<CurrentLocProvider>(context);
     var curlat = loadcurloc.pslat;
     var curlong = loadcurloc.pslong;
@@ -68,9 +70,6 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
         position: LatLng(curlat, curlong),
         infoWindow: InfoWindow(title: "You"));
 
-    // Marker Startmark = Marker(
-    //   markerId: Mar
-    // );
 
     CameraPosition _kGooglePlex = CameraPosition(
       target: LatLng(long, lat),
