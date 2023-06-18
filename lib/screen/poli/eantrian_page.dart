@@ -193,7 +193,7 @@ class EAntrian extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          'A12',
+                                          "U ${DateTime.now().millisecond.toString()}",
                                           style: TextStyle(
                                             fontSize: 38,
                                             fontWeight: FontWeight.w900,

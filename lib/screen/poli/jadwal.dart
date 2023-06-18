@@ -4,6 +4,8 @@ import 'package:healthproject/provider/user_repo.dart';
 import 'package:healthproject/screen/poli/pendaftaran.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/daftar/form_common.dart';
+import 'package:healthproject/widget/jadwal/dropdown.dart';
+import 'package:healthproject/widget/jadwal/time_spinner.dart';
 import 'package:healthproject/widget/popup_warning.dart';
 import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:provider/provider.dart';
@@ -54,10 +56,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
       // }
     });
   }
-
-
-
-
+  
   String _char = "";
   String hari = "Senin";
 
@@ -102,20 +101,26 @@ class _JadwalPoliState extends State<JadwalPoli> {
               child:getuser[0] != "admin"? Container(): IconButton(onPressed: (){
                 showDialog(context: context, builder: (context){
                   return AlertDialog(
-                    title: Text("Tambah Jadwal hari $hari"),
+                    title: Text("Tambah Jadwal $hari"),
                     content: SizedBox(
-                      height: 200,
+                      height: 300,
                       child: Column(
                         children: [
-                          RoundeFieldWhite(valuenya: addJadwal, title: "Jadwal Baru", hover: "Ex: 09:00 - 12:00", check: addjawalcek),
+                          Text("Mulai"),
+                          SpinerTime(tipe: "mulai",),
+                          SizedBox(height: 20,),
+                          Text("Selesai"),
+                          SpinerTime(tipe: "selesai",),
                           SizedBox(height: 20,),
                           ElevatedButton(onPressed: (){
-                            if(addJadwal.text.isNotEmpty){
-                              loadJadwal.createJadwalPoli(hari, addJadwal.text, getNamaPoli);
+                            loadJadwal.formatNewTime();
+                            String NewJadwal = loadJadwal.newDataTime;
+                            if(NewJadwal != ""){
+                              loadJadwal.createJadwalPoli(hari, NewJadwal, getNamaPoli);
 
                               loadingdata();
                               setState(() {
-                                addJadwal.text == "";
+                                NewJadwal == "";
                               });
                               Navigator.pop(context);
                               
@@ -341,6 +346,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                             setState(() {
                                                               jadwal.text = getdata.waktu;
                                                             });
+                                                            
                                                             showModalBottomSheet(
                                                                 isScrollControlled:
                                                                     true,
