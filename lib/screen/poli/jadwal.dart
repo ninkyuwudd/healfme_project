@@ -6,6 +6,7 @@ import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:healthproject/widget/daftar/form_common.dart';
 import 'package:healthproject/widget/jadwal/dropdown.dart';
 import 'package:healthproject/widget/jadwal/time_spinner.dart';
+import 'package:healthproject/widget/popup_info.dart';
 import 'package:healthproject/widget/popup_warning.dart';
 import 'package:healthproject/widget/rounded_field_white.dart';
 import 'package:provider/provider.dart';
@@ -112,19 +113,23 @@ class _JadwalPoliState extends State<JadwalPoli> {
                           Text("Selesai"),
                           SpinerTime(tipe: "selesai",),
                           SizedBox(height: 20,),
-                          ElevatedButton(onPressed: (){
+                          ElevatedButton(onPressed: () async{
                             loadJadwal.formatNewTime();
                             String NewJadwal = loadJadwal.newDataTime;
                             if(NewJadwal != ""){
                               loadJadwal.createJadwalPoli(hari, NewJadwal, getNamaPoli);
 
-                              loadingdata();
                               setState(() {
                                 NewJadwal == "";
                               });
                               Navigator.pop(context);
-                              
+                              await Future.delayed(Duration(seconds: 2));
+                              loadingdata();
                               loadJadwal.getJadwalPolidata(getNamaPoli, hari);
+                                        showDialog(context: context, builder: (context){
+                                return  PopupInfo(pesan: "Data Berhasil ditambahkan");
+                              });
+                             
                             }
                             
                           }, child: Text("Submit"))
@@ -205,6 +210,7 @@ class _JadwalPoliState extends State<JadwalPoli> {
                               setState(() {
                                 hari = value;
                               });
+                              
                               loadJadwal.getJadwalPolidata(getNamaPoli, value);
                               loadingdata();
                             },
@@ -383,8 +389,16 @@ class _JadwalPoliState extends State<JadwalPoli> {
 
                                                                                 }, child: Text("Batal")),
                                                                                 Spacer(),
-                                                                                ElevatedButton(onPressed: () {
+                                                                                ElevatedButton(onPressed: () async{
+                                                                                  Navigator.pop(context);
+                                                                                  // showDialog(context: Scaffold.of(context).context, builder: (context){
+                                                                                  //   return PopupInfo(pesan: "Berhasil Edit data");
+                                                                                  // });
                                                                                   loadJadwal.editJadwalPoliData(jadwal.text,getdata.id);
+                                                                                  await Future.delayed(Duration(seconds: 2));
+                                                                                  loadingdata();
+                                                                                  loadJadwal.getJadwalPolidata(getNamaPoli, hari);
+
                                                                                   // loadJadwal.editJadwalPoliData(jadwal.text,loadJadwal.allDataJadwal[]);
                                                                                 }, child: Text("Simpan"))
                                                                               ],
@@ -402,7 +416,11 @@ class _JadwalPoliState extends State<JadwalPoli> {
                                                           onPressed: () async{
                                                           
                                                             loadJadwal.deleteJadwalPoli(getdata.id);
-                                                            loadJadwal.getJadwalPolidata(getNamaPoli, hari);
+                                                            loadingdata();
+                                                            await Future.delayed(Duration(seconds: 2));
+                                                            setState(() {
+                                                              loadJadwal.getJadwalPolidata(getNamaPoli, hari);
+                                                            });
                                                           },
                                                           icon: Icon(
                                                             Icons.delete,

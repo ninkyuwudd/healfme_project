@@ -28,21 +28,6 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
 
 
   //create polyline tapi belum work
-  void _createpolyline(var lat, var long) {
-    Polyline polyline = Polyline(
-        polylineId: PolylineId('Rute'),
-        color: Colors.blue,
-        width: 4,
-        points: [
-          LatLng(113.7164, -8.1651),
-          LatLng(113.7155, -8.1655),
-          LatLng(113.7150, -8.1660)
-        ]);
-
-    setState(() {
-      _polines.add(polyline);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +64,12 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
     makers.add(marker);
     makers.add(markerStart);
 
+  
+
+
+
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -91,7 +82,7 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
           initialCameraPosition: _kGooglePlex,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
-            _createpolyline(lat, long);
+           
           }),
       bottomSheet: BottomSheet(
           onClosing: () {},
