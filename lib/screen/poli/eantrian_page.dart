@@ -7,17 +7,43 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../provider/antrian_provider.dart';
 import '../../provider/user_repo.dart';
 
-class EAntrian extends StatelessWidget {
+class EAntrian extends StatefulWidget {
   const EAntrian({Key? key}) : super(key: key);
+
+  @override
+  State<EAntrian> createState() => _EAntrianState();
+}
+
+class _EAntrianState extends State<EAntrian> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+        var loaduser = Provider.of<UserProvider>(context,listen: false);
+    var getuser = loaduser.getUserData;
+    print("id: ${getuser[6]}");
+
+    Provider.of<AntrianProvider>(context, listen: false).fetchDataAntrian(getuser[6]);
+    setState(() {
+      
+    });
+           var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
+    var getAntrian = loadAntri.antrian;
+    print(getAntrian.length);
+  }
+
 
   @override
   Widget build(BuildContext context) {
     var getuser = Provider.of<UserProvider>(context);
-    var dataUser = getuser.dataPribadiUser;
-
+    var dataUser = getuser.getUserData;
     var loadjadwal = Provider.of<JadwalProvider>(context);
-        var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
+    var loadAntri =  Provider.of<AntrianProvider>(context, listen: false);
     var getAntrian = loadAntri.antrian;
+    // Provider.of<AntrianProvider>(context).fetchDataAntrian(dataUser[6]);
+    // autoreload(dataUser[6]);
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -227,7 +253,7 @@ ${antrian.gender}
 ${antrian.alamat}
 ${antrian.penjamin}
 ${antrian.nomerPenjamin}
-id: ${antrian.id}
+${antrian.id}
                                     ''',
                                       version: QrVersions.auto,
                                       size: 150,

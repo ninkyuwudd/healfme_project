@@ -68,6 +68,10 @@ class _UnggahKtpBpjsState extends State<UnggahKtpBpjs> {
                         loadgetfoto.uploadImageToFirebasebpjs(loaduser.getUserData[0].toString(), loadktp,getNameKtp);
 
                         loaduser.changeDaftarStatus(true);
+                        setState(() {
+                          loadbpjs = null;
+                          loadktp = null;
+                        });
                         Navigator.pushReplacementNamed(context, Ringkasan.routename);
                       }, child: Text("Ya")),
                       ElevatedButton(onPressed: (){

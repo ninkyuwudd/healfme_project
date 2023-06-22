@@ -84,7 +84,7 @@ class _QrScanPageState extends State<QrScanPage> {
             Alamat      
             Penjamin    
             No Penjamin 
-            
+            id
             '''),
                   Spacer(),
                   Text('$result'),

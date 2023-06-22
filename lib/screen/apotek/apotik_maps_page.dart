@@ -56,6 +56,37 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
         infoWindow: InfoWindow(title: "You"));
 
 
+      CameraPosition _current = CameraPosition(
+        
+      target: LatLng(curlat, curlong),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414
+        
+        );
+
+      
+      CameraPosition _tujuan = CameraPosition(
+        
+      target: LatLng(long, lat),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414
+        
+        );
+
+          Future<void> _curretloc() async{
+    final GoogleMapController controller = await _controller.future;
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_current));
+  }
+
+
+            Future<void> _tujuanloc() async{
+    final GoogleMapController controller = await _controller.future;
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_tujuan));
+  }
+
+
+
+
     CameraPosition _kGooglePlex = CameraPosition(
       target: LatLng(long, lat),
       zoom: 16.4746,
@@ -66,7 +97,7 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
 
   
 
-
+    
 
 
 
@@ -84,6 +115,21 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
             _controller.complete(controller);
            
           }),
+
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/2 + 40),
+        child: Column(
+          children: [
+                      FloatingActionButton.extended(onPressed: (){
+              _tujuanloc();
+            }, label: Icon(Icons.pin_drop_outlined)),
+            SizedBox(height: 20,),
+            FloatingActionButton.extended(onPressed: (){
+              _curretloc();
+            }, label: Icon(Icons.perm_identity_outlined)),
+          ],
+        ),
+      ),
       bottomSheet: BottomSheet(
           onClosing: () {},
           builder: (BuildContext ctx) => Container(
@@ -130,4 +176,5 @@ class _ApotikTerdekatPageState extends State<ApotikTerdekatPage> {
               )),
     );
   }
+
 }
